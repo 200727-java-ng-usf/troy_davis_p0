@@ -1,6 +1,7 @@
 package com.revature.bankProject0.screens;
 
 import com.revature.bankProject0.models.User;
+import com.revature.bankProject0.services.LogService;
 import com.revature.bankProject0.services.UserService;
 
 import java.io.BufferedReader;
@@ -16,9 +17,10 @@ public class RegisterScreen  extends Screen {
     private String route;
     private UserService userService;
 
+
     public RegisterScreen(UserService userService){
         //only good for development
-        System.out.println("[LOG] - Instantiating " + this.getClass().getName());
+        LogService.log("Instantiating " + this.getClass().getName());
         //set the userService upon Instantiation
         this.userService = userService;
         this.name = "RegisterScreen";

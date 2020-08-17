@@ -1,0 +1,6 @@
+
+[LOG] - 2020-08-17T22:10:06.134Z Initializing application
+[LOG] - 2020-08-17T22:10:06.179Z Instantiating class com.revature.bankProject0.repositories.UserRepository
+[LOG] - 2020-08-17T22:10:06.183Z Instantiating class com.revature.bankProject0.services.UserService
+[LOG] - 2020-08-17T22:10:06.205Z Instantiating com.revature.bankProject0.screens.RegisterScreen
+[LOG] - 2020-08-17T22:10:42.341Z Provided username is already in use

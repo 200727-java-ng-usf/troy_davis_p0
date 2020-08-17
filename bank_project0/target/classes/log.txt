@@ -1,0 +1,9 @@
+
+[LOG] - 2020-08-17T22:02:51.082Z Instantiatingclass com.revature.bankProject0.repositories.UserRepository
+[LOG] - 2020-08-17T22:02:51.102Z Instantiatingclass com.revature.bankProject0.services.UserService
+[LOG] - 2020-08-17T22:02:51.107Z Instantiating com.revature.bankProject0.screens.RegisterScreen
+[LOG] - 2020-08-17T22:03:24.306Z Provided username is already in use
+[LOG] - 2020-08-17T22:06:15.404Z Instantiating class com.revature.bankProject0.repositories.UserRepository
+[LOG] - 2020-08-17T22:06:15.428Z Instantiating class com.revature.bankProject0.services.UserService
+[LOG] - 2020-08-17T22:06:15.431Z Instantiating com.revature.bankProject0.screens.RegisterScreen
+[LOG] - 2020-08-17T22:06:29.281Z Provided username is already in use
