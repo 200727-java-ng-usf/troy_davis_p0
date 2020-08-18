@@ -1,5 +1,6 @@
 package com.revature.bankProject0.services;
 
+import com.revature.bankProject0.exceptions.AuthenticationException;
 import com.revature.bankProject0.exceptions.InvalidRequestException;
 import com.revature.bankProject0.models.Role;
 import com.revature.bankProject0.models.User;
@@ -49,4 +50,20 @@ public class UserService {
         }
         return true;
     }
+
+    /**
+     * Validate based on provided credentials
+     * @param username
+     * @param password
+     * @return
+     */
+    public User authenticate(String username, String password){
+        if (username == null || username.trim().equals("") || password == null || password.trim().equals("")){
+            throw new InvalidRequestException("Invalid credential values provided");
+        }
+
+        return userRepository.findUsersByCredentials(username, password)
+                .orElseThrow(AuthenticationException::new);
+    }
+
 }

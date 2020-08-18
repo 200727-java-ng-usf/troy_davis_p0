@@ -29,8 +29,8 @@ public class RegisterScreen  extends Screen {
     }
 
     @Override
-    public void getRoute() {
-
+    public String getRoute() {
+        return this.route;
     }
 
     @Override
@@ -52,7 +52,7 @@ public class RegisterScreen  extends Screen {
             //create new User instance based on given values
 
             User newUser = new User(firstName,lastName,userName,password);
-
+            LogService.log("new user attempted to sign up: " + "\n" + firstName + "," + lastName + "," + userName + "," + password);
             User registeredUser = userService.register(newUser);
             System.out.println("Congrats! here are your new account details: " + registeredUser);
 

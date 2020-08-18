@@ -1,6 +1,32 @@
 
-[LOG] - 2020-08-17T22:10:06.134Z Initializing application
-[LOG] - 2020-08-17T22:10:06.179Z Instantiating class com.revature.bankProject0.repositories.UserRepository
-[LOG] - 2020-08-17T22:10:06.183Z Instantiating class com.revature.bankProject0.services.UserService
-[LOG] - 2020-08-17T22:10:06.205Z Instantiating com.revature.bankProject0.screens.RegisterScreen
-[LOG] - 2020-08-17T22:10:42.341Z Provided username is already in use
+[LOG] - 2020-08-18T00:43:55.984Z Initializing application
+[LOG] - 2020-08-18T00:43:56.002Z Instantiating class com.revature.bankProject0.repositories.UserRepository
+[LOG] - 2020-08-18T00:43:56.004Z Instantiating class com.revature.bankProject0.services.UserService
+[LOG] - 2020-08-18T00:43:56.014Z Instantiating com.revature.bankProject0.screens.RegisterScreen
+[LOG] - 2020-08-18T00:44:11.905Z  Instantiating: com.revature.bankProject0.screens.LoginScreen
+[LOG] - 2020-08-18T00:44:22.825Z user: tmd1990 attempted to log in
+[LOG] - 2020-08-18T00:52:59.146Z Instantiating class com.revature.bankProject0.repositories.UserRepository
+[LOG] - 2020-08-18T00:52:59.166Z Instantiating class com.revature.bankProject0.services.UserService
+[LOG] - 2020-08-18T00:52:59.171Z Instantiating com.revature.bankProject0.screens.RegisterScreen
+[LOG] - 2020-08-18T00:53:14.867Z new user attempted to sign up: 
+troy,davis,admin,admin
+[LOG] - 2020-08-18T00:53:14.870Z Provided username is already in use
+[LOG] - 2020-08-18T00:54:17.853Z Instantiating class com.revature.bankProject0.repositories.UserRepository
+[LOG] - 2020-08-18T00:54:17.877Z Instantiating class com.revature.bankProject0.services.UserService
+[LOG] - 2020-08-18T00:54:17.880Z Instantiating com.revature.bankProject0.screens.RegisterScreen
+[LOG] - 2020-08-18T00:54:32.212Z new user attempted to sign up: 
+troy,davis,tmd1990,password
+[LOG] - 2020-08-18T00:54:32.217Z  Instantiating: com.revature.bankProject0.screens.LoginScreen
+[LOG] - 2020-08-18T00:54:43.429Z user: tmd1990 attempted to log in
+[LOG] - 2020-08-18T01:16:45.142Z Instantiating class com.revature.bankProject0.repositories.UserRepository
+[LOG] - 2020-08-18T01:16:45.162Z Instantiating class com.revature.bankProject0.services.UserService
+[LOG] - 2020-08-18T01:16:45.165Z  Instantiating: com.revature.bankProject0.screens.HomeScreen
+[LOG] - 2020-08-18T01:16:50.975Z Instantiating com.revature.bankProject0.screens.RegisterScreen
+[LOG] - 2020-08-18T01:17:11.058Z new user attempted to sign up: 
+troy,davis,tmd1990,pass
+[LOG] - 2020-08-18T01:17:11.064Z  Instantiating: com.revature.bankProject0.screens.LoginScreen
+[LOG] - 2020-08-18T01:17:18.487Z user: tmd1990 attempted to log in
+[LOG] - 2020-08-18T01:17:24.185Z Instantiating class com.revature.bankProject0.repositories.UserRepository
+[LOG] - 2020-08-18T01:17:24.208Z Instantiating class com.revature.bankProject0.services.UserService
+[LOG] - 2020-08-18T01:17:24.211Z  Instantiating: com.revature.bankProject0.screens.HomeScreen
+[LOG] - 2020-08-18T01:17:28.309Z  User decided to close aaplication
