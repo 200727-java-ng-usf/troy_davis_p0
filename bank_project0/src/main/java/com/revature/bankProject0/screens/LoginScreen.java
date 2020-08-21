@@ -7,6 +7,9 @@ import com.revature.bankProject0.services.UserService;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.util.Arrays;
+
+import static com.revature.bankProject0.AppDriver.app;
 
 public class LoginScreen extends Screen{
     private String name;
@@ -18,6 +21,7 @@ public class LoginScreen extends Screen{
 
     //inject the dependency through the constructor(constructor injection)
     public LoginScreen(UserService userService){
+        super("LoginScreen","/login");
         LogService.log(" Instantiating: " + this.getClass().getName());
 
         //set the user service
@@ -32,26 +36,23 @@ public class LoginScreen extends Screen{
 
     @Override
     public void render() {
-        BufferedReader console = new BufferedReader(new InputStreamReader(System.in));
+
         String username;
         String password;
 
         try {
             System.out.println("Please provide login credentials");
             System.out.println("Username: ");
-            username = console.readLine();
+            username = app.getConsole().readLine();
             System.out.println("Password: ");
-            password = console.readLine();
+            password = app.getConsole().readLine();
             System.out.println("you entered: " + username + "/" + password);
             LogService.log("user: "+ username + " attempted to log in");
 
             User authorizedUser = userService.authenticate(username,password);
 
-
-
         } catch (IOException e) {
-            e.printStackTrace();
-            LogService.log(e.getStackTrace().toString());
+            LogService.log(Arrays.toString(e.getStackTrace()));
         }
     }
 }

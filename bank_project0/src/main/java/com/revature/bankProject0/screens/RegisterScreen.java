@@ -1,5 +1,6 @@
 package com.revature.bankProject0.screens;
 
+import com.revature.bankProject0.models.ConsoleColors;
 import com.revature.bankProject0.models.User;
 import com.revature.bankProject0.services.LogService;
 import com.revature.bankProject0.services.UserService;
@@ -11,7 +12,7 @@ import java.io.InputStreamReader;
 /**
  * Screen to register new Users
  */
-public class RegisterScreen  extends Screen {
+public class RegisterScreen extends Screen {
 
     private String name;
     private String route;
@@ -19,12 +20,11 @@ public class RegisterScreen  extends Screen {
 
 
     public RegisterScreen(UserService userService){
+        super("RegisterScreen","/register");
         //only good for development
         LogService.log("Instantiating " + this.getClass().getName());
         //set the userService upon Instantiation
         this.userService = userService;
-        this.name = "RegisterScreen";
-        this.route = "/register";
 
     }
 
