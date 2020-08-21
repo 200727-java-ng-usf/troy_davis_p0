@@ -1,4 +1,4 @@
-package com.revature.bankProject0Tests;
+package com.revature.bankProject0Tests.services;
 
 import com.revature.bankProject0.models.Role;
 import com.revature.bankProject0.models.User;
@@ -40,18 +40,7 @@ public class UserServiceTests {
     }
 
     @Test
-    public void authenticateWithValidCredentials(){
-
-        //arrange
-        msg = "when given a valid user ";
-        User expectedUser = new User(1,"troy","davis","admin","admin", Role.ADMIN);
-        Mockito.when(mockUserRepo.findUsersByCredentials(Mockito.anyString(),Mockito.anyString()))
-                .thenReturn(Optional.of(expectedUser));
-        //act
-        User actualResult = sut.authenticate("admin","admin");
-
-        //assert
-        Assert.assertEquals(expectedUser,actualResult);
+    public void authenticateWithValidCredentials() {
 
     }
 

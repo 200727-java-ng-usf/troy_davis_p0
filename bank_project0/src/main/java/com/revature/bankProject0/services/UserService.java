@@ -6,6 +6,12 @@ import com.revature.bankProject0.models.Role;
 import com.revature.bankProject0.models.User;
 import com.revature.bankProject0.repositories.UserRepository;
 
+import java.util.HashSet;
+import java.util.Optional;
+import java.util.Set;
+
+import static com.revature.bankProject0.AppDriver.app;
+
 public class UserService {
     //print method instantiation signiture
 
@@ -18,18 +24,23 @@ public class UserService {
 
     }
 
-    public User register(User newUser){
+    public void register(User newUser){
         if (!isUserValid(newUser)){
             LogService.log("Invalid user fields provided during registration");
             throw new InvalidRequestException("Invalid user fields provided during registration");
         }
-        if (userRepository.findUserByUserName(newUser.getUserName()).isPresent()){
-            throw new InvalidRequestException("Provided username is already in use");
-        }
-        newUser.setRole(Role.BASIC_USER);
-        User registeredUser = userRepository.save(newUser);
 
-        return registeredUser;
+        Optional<User> existingUser = userRepository.findUserByUserName(newUser.getUserName());
+
+        if (existingUser.isPresent()){
+            System.out.println("Provided username is already in use!");
+            app.getRouterService().route("/register");
+        }
+
+        newUser.setRole(Role.BASIC_USER);
+        userRepository.save(newUser);
+
+        app.setCurrentUser(newUser);
     }
 
     public boolean isUserValid(User userInQuestion){
@@ -57,13 +68,34 @@ public class UserService {
      * @param password
      * @return
      */
-    public User authenticate(String username, String password){
+    public void authenticate(String username, String password){
         if (username == null || username.trim().equals("") || password == null || password.trim().equals("")){
             throw new InvalidRequestException("Invalid credential values provided");
         }
+        User authUser = userRepository.findUsersByCredentials(username,password)
+                                    .orElseThrow(AuthenticationException::new);
 
-        return userRepository.findUsersByCredentials(username, password)
-                .orElseThrow(AuthenticationException::new);
+        app.setCurrentUser(authUser);
     }
+
+    public Set<User> getAllUsers(){
+        return new HashSet<>();
+    }
+    public Set<User> getUsersByRole(){
+        return new HashSet<>();
+    }
+    public User getUserById(int id){
+        return null;
+    }
+    public User getUsersByUsername(String username){
+        return null;
+    }
+    public boolean deleteUserById(int id){
+        return false;
+    }
+    public boolean update (User updatedUser){
+        return false;
+    }
+
 
 }

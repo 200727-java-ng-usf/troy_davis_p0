@@ -16,7 +16,10 @@ public class AppDriver {
     public static void main(String[] args) {
 
         while (app.isAppRunning()){
+            System.out.println(ConsoleColors.BLACK_BACKGROUND + ConsoleColors.WHITE_BOLD);
             app.getRouterService().route("/home");
+            System.out.println(ConsoleColors.RESET);
+
         }
 
 

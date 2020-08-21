@@ -9,13 +9,12 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 
+import static com.revature.bankProject0.AppDriver.app;
+
 /**
  * Screen to register new Users
  */
 public class RegisterScreen extends Screen {
-
-    private String name;
-    private String route;
     private UserService userService;
 
 
@@ -29,55 +28,37 @@ public class RegisterScreen extends Screen {
     }
 
     @Override
-    public String getRoute() {
-        return this.route;
-    }
-
-    @Override
     public void render() {
         String firstName, lastName, userName, password;
-        BufferedReader console = new BufferedReader(new InputStreamReader(System.in));
 
         try {
+
             System.out.println("Welcome! sign up for a new account!");
             System.out.println("First Name: ");
-            firstName = console.readLine();
+            firstName = app.getConsole().readLine();
             System.out.println("Last Name: ");
-            lastName = console.readLine();
+            lastName = app.getConsole().readLine();
             System.out.println("userName: ");
-            userName = console.readLine();
+            userName = app.getConsole().readLine();
             System.out.println("Password: ");
-            password = console.readLine();
+            password = app.getConsole().readLine();
 
             //create new User instance based on given values
 
             User newUser = new User(firstName,lastName,userName,password);
             LogService.log("new user attempted to sign up: " + "\n" + firstName + "," + lastName + "," + userName + "," + password);
-            User registeredUser = userService.register(newUser);
-            System.out.println("Congrats! here are your new account details: " + registeredUser);
+
+            userService.register(newUser);
+
+            if (app.isSessionValid()){
+                System.out.println("Congrats! here are your new account details: " + newUser);
+                app.getRouterService().route("/dash");
+            }
+
 
         } catch (IOException e) {
             e.printStackTrace();
+            app.setAppRunning(false);
         }
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public void setRoute(String route) {
-        this.route = route;
-    }
-
-    public UserService getUserService() {
-        return userService;
-    }
-
-    public void setUserService(UserService userService) {
-        this.userService = userService;
     }
 }

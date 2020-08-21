@@ -12,9 +12,6 @@ import java.util.Arrays;
 import static com.revature.bankProject0.AppDriver.app;
 
 public class LoginScreen extends Screen{
-    private String name;
-    private String route;
-
     //dependency to the log in screen
     private UserService userService;
 
@@ -26,12 +23,6 @@ public class LoginScreen extends Screen{
 
         //set the user service
         this.userService = userService;
-    }
-
-
-    @Override
-    public String getRoute() {
-        return this.route;
     }
 
     @Override
@@ -49,7 +40,11 @@ public class LoginScreen extends Screen{
             System.out.println("you entered: " + username + "/" + password);
             LogService.log("user: "+ username + " attempted to log in");
 
-            User authorizedUser = userService.authenticate(username,password);
+            userService.authenticate(username,password);
+
+            if (app.isSessionValid()){
+                app.getRouterService().route("/dash");
+            }
 
         } catch (IOException e) {
             LogService.log(Arrays.toString(e.getStackTrace()));

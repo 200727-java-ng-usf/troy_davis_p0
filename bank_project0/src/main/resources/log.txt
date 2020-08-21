@@ -1,20 +1,16 @@
 
-[LOG] - 2020-08-20T15:08:07.743Z Initializing application
-[LOG] - Thu Aug 20 11:08:07 EDT 2020 -  Instantiating: com.revature.bankProject0.screens.HomeScreen
-[LOG] - Thu Aug 20 11:08:07 EDT 2020 -  Instantiating: com.revature.bankProject0.screens.LoginScreen
-[LOG] - Thu Aug 20 11:08:07 EDT 2020 - Instantiating com.revature.bankProject0.screens.RegisterScreen
-[LOG] - Thu Aug 20 11:08:10 EDT 2020 -  User requested route to register screen from home page
-[LOG] - Thu Aug 20 11:08:14 EDT 2020 - new user attempted to sign up: 
-tr,etdf,df,df
-[LOG] - Thu Aug 20 16:03:56 EDT 2020 -  Initializing application
-[LOG] - Thu Aug 20 16:03:56 EDT 2020 - Instantiating class com.revature.bankProject0.repositories.UserRepository
-[LOG] - Thu Aug 20 16:03:56 EDT 2020 - Instantiating class com.revature.bankProject0.services.UserService
-[LOG] - Thu Aug 20 16:03:56 EDT 2020 -  Instantiating: com.revature.bankProject0.screens.HomeScreen
-[LOG] - Thu Aug 20 16:03:56 EDT 2020 - Adding /homeTo screen set
-[LOG] - Thu Aug 20 16:03:56 EDT 2020 -  Instantiating: com.revature.bankProject0.screens.LoginScreen
-[LOG] - Thu Aug 20 16:03:56 EDT 2020 - Adding nullTo screen set
-[LOG] - Thu Aug 20 16:03:56 EDT 2020 - Instantiating com.revature.bankProject0.screens.RegisterScreen
-[LOG] - Thu Aug 20 16:03:56 EDT 2020 - Adding /registerTo screen set
-[LOG] - Thu Aug 20 16:03:56 EDT 2020 - Application initialization complete
-[LOG] - Thu Aug 20 16:04:44 EDT 2020 -  User requested route to register screen from home page
-[LOG] - Thu Aug 20 16:04:49 EDT 2020 -  User requested route to register screen from home page
+[LOG] - 2020-08-21T05:13:09.176Z Initializing application
+[LOG] - Fri Aug 21 01:13:09 EDT 2020 -  Initializing application
+[LOG] - Fri Aug 21 01:13:09 EDT 2020 - Instantiating class com.revature.bankProject0.repositories.UserRepository
+[LOG] - Fri Aug 21 01:13:09 EDT 2020 - Instantiating class com.revature.bankProject0.services.UserService
+[LOG] - Fri Aug 21 01:13:09 EDT 2020 - Adding /homeTo screen set
+[LOG] - Fri Aug 21 01:13:09 EDT 2020 -  Instantiating: com.revature.bankProject0.screens.LoginScreen
+[LOG] - Fri Aug 21 01:13:09 EDT 2020 - Adding /loginTo screen set
+[LOG] - Fri Aug 21 01:13:09 EDT 2020 - Instantiating com.revature.bankProject0.screens.RegisterScreen
+[LOG] - Fri Aug 21 01:13:09 EDT 2020 - Adding /registerTo screen set
+[LOG] - Fri Aug 21 01:13:09 EDT 2020 - Adding /dashTo screen set
+[LOG] - Fri Aug 21 01:13:09 EDT 2020 - Application initialization complete
+[LOG] - Fri Aug 21 01:13:28 EDT 2020 - new user attempted to sign up: 
+troy,davis,user,pass
+[LOG] - Fri Aug 21 01:13:50 EDT 2020 - new user attempted to sign up: 
+troy,davis,troy,pass
