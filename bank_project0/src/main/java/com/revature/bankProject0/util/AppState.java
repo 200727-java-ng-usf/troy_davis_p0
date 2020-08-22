@@ -2,10 +2,7 @@ package com.revature.bankProject0.util;
 
 import com.revature.bankProject0.models.User;
 import com.revature.bankProject0.repositories.UserRepository;
-import com.revature.bankProject0.screens.DashboardScreen;
-import com.revature.bankProject0.screens.HomeScreen;
-import com.revature.bankProject0.screens.LoginScreen;
-import com.revature.bankProject0.screens.RegisterScreen;
+import com.revature.bankProject0.screens.*;
 import com.revature.bankProject0.services.LogService;
 import com.revature.bankProject0.services.RouterService;
 import com.revature.bankProject0.services.UserService;
@@ -36,7 +33,9 @@ public class AppState {
         routerService.addScreen(new HomeScreen())
                     .addScreen(new LoginScreen(userService))
                     .addScreen(new RegisterScreen(userService))
-                    .addScreen(new DashboardScreen());
+                    .addScreen(new DashboardScreen())
+                    .addScreen(new ViewAccountScreen())
+                    .addScreen(new ViewPastTransactionsScreen());
         LogService.log("Application initialization complete");
     }
 
@@ -74,5 +73,8 @@ public class AppState {
 
     public boolean isSessionValid(){
         return (this.currentUser != null);
+    }
+    public void invalidateCurrentSession(){
+        currentUser = null;
     }
 }

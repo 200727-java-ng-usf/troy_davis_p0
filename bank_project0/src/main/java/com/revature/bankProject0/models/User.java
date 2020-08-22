@@ -12,6 +12,7 @@ public class User {
     private String lastName;
     private String userName;
     private String passWord;
+    private String email;
     private Role role;
 
     /**
@@ -34,7 +35,10 @@ public class User {
         this.userName = userName;
         this.passWord = passWord;
     }
-
+    public User(String firstName, String lastName, String userName, String passWord, String email) {
+        this(firstName,lastName,userName,passWord);
+        this.email = email;
+    }
     /**
      * Create a basic user with id, first and last names, username, and password
      * @param id
@@ -43,8 +47,8 @@ public class User {
      * @param userName
      * @param passWord
      */
-    public User(Integer id, String firstName, String lastName, String userName, String passWord) {
-        this(firstName, lastName, userName, passWord);
+    public User(Integer id, String firstName, String lastName, String userName, String passWord, String email) {
+        this(firstName, lastName, userName, passWord, email);
         this.id = id;
     }
 
@@ -57,8 +61,8 @@ public class User {
      * @param passWord
      * @param role
      */
-    public User(Integer id, String firstName, String lastName, String userName, String passWord, Role role) {
-        this(id,firstName, lastName, userName, passWord);
+    public User(Integer id, String firstName, String lastName, String userName, String passWord,String email, Role role) {
+        this(id,firstName, lastName, userName, passWord,email);
         this.role = role;
     }
 
@@ -67,7 +71,7 @@ public class User {
      * @param copy
      */
     public User(User copy){
-        this(copy.id, copy.firstName, copy.lastName, copy.userName, copy.passWord, copy.role);
+        this(copy.id, copy.firstName, copy.lastName, copy.userName, copy.passWord, copy.email, copy.role);
     }
 
 
@@ -111,6 +115,14 @@ public class User {
         this.passWord = passWord;
     }
 
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
     public Role getRole() {
         return role;
     }
@@ -129,12 +141,13 @@ public class User {
                 Objects.equals(getLastName(), user.getLastName()) &&
                 Objects.equals(getUserName(), user.getUserName()) &&
                 Objects.equals(getPassWord(), user.getPassWord()) &&
+                Objects.equals(getEmail(), user.getEmail()) &&
                 getRole() == user.getRole();
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(getId(), getFirstName(), getLastName(), getUserName(), getPassWord(), getRole());
+        return Objects.hash(getId(), getFirstName(), getLastName(), getUserName(), getPassWord(), getEmail(), getRole());
     }
 
     @Override
@@ -145,9 +158,8 @@ public class User {
                 ", lastName='" + lastName + '\'' +
                 ", userName='" + userName + '\'' +
                 ", passWord='" + passWord + '\'' +
+                ", email='" + email + '\'' +
                 ", role=" + role +
                 '}';
     }
-
-
 }

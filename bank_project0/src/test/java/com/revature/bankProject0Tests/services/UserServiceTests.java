@@ -27,7 +27,7 @@ public class UserServiceTests {
     @Before
     public void setup(){
         sut = new UserService(mockUserRepo);
-        mockUsers.add( new User(1,"troy","davis","tmd1990","password", Role.ADMIN));
+        mockUsers.add( new User(1,"troy","davis","tmd1990","password", "test@g.co",Role.ADMIN));
     }
 
     @After

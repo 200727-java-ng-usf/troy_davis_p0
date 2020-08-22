@@ -24,9 +24,9 @@ public class HomeScreen extends Screen{
         try {
             System.out.println(
                 "Welcome to Troys bank! "+
-                "\n" + "Enter 1 to create a new account"  +
-                "\n" + "Enter 2 to login: " +
-                "\n" + "anything else to exit");
+                "\n" + "1) to create a new account"  +
+                "\n" + "2) to login: " +
+                "\n" + "?) anything else to exit");
             String route = app.getConsole().readLine();
             if (route.equals("1")){
                 app.getRouterService().route("/register");

@@ -29,15 +29,17 @@ public class RegisterScreen extends Screen {
 
     @Override
     public void render() {
-        String firstName, lastName, userName, password;
+        String firstName, lastName, userName, password, email;
 
         try {
 
-            System.out.println("Welcome! sign up for a new account!");
+            System.out.println("Sign up for a new account!");
             System.out.println("First Name: ");
             firstName = app.getConsole().readLine();
             System.out.println("Last Name: ");
             lastName = app.getConsole().readLine();
+            System.out.println("Email: ");
+            email = app.getConsole().readLine();
             System.out.println("userName: ");
             userName = app.getConsole().readLine();
             System.out.println("Password: ");
@@ -45,8 +47,8 @@ public class RegisterScreen extends Screen {
 
             //create new User instance based on given values
 
-            User newUser = new User(firstName,lastName,userName,password);
-            LogService.log("new user attempted to sign up: " + "\n" + firstName + "," + lastName + "," + userName + "," + password);
+            User newUser = new User(firstName,lastName,userName,password,email);
+            LogService.log("new user attempted to sign up: " + "\n" + firstName + "," + lastName + "," + userName + "," + password + "," + email);
 
             userService.register(newUser);
 

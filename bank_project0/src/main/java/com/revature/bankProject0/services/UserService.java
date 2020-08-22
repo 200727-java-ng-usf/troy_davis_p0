@@ -13,17 +13,32 @@ import java.util.Set;
 import static com.revature.bankProject0.AppDriver.app;
 
 public class UserService {
-    //print method instantiation signiture
+
 
     private UserRepository userRepository;
 
+    /**
+     * Public constructor to create an instance of the service taking in a User Repository
+     * @param repo
+     */
     public UserService(UserRepository repo){
-
+        //print method instantiation signature
         LogService.log("Instantiating " + this.getClass().toString());
         userRepository = repo;
 
     }
 
+    /**
+     * public void method to register new users into the database
+     *      - validates user
+     *      - checks if username is present in database
+     *      - checks if email address is present in database
+     *      - returns user to register screen if so
+     *      - sets new users role to basic member
+     *      - saves user to database
+     *      - sets current user to the new user
+     * @param newUser
+     */
     public void register(User newUser){
         if (!isUserValid(newUser)){
             LogService.log("Invalid user fields provided during registration");
@@ -31,18 +46,30 @@ public class UserService {
         }
 
         Optional<User> existingUser = userRepository.findUserByUserName(newUser.getUserName());
-
         if (existingUser.isPresent()){
             System.out.println("Provided username is already in use!");
             app.getRouterService().route("/register");
         }
 
+        Optional<User> existingUserEmail = userRepository.findUserByEmail(newUser.getEmail());
+        if (existingUserEmail.isPresent()) {
+            // TODO implement a custom ResourcePersistenceException
+            throw new RuntimeException("Provided username is already in use!");
+        }
+
         newUser.setRole(Role.BASIC_USER);
         userRepository.save(newUser);
-
         app.setCurrentUser(newUser);
     }
 
+    /**
+     * public boolean method to tell if a given user is valid based on given fields
+     *      - checks first, last, username, password, email for null
+     *      - checks first, last, username, password, email for empty strings
+     *      - returns true if not
+     * @param userInQuestion
+     * @return
+     */
     public boolean isUserValid(User userInQuestion){
         if (userInQuestion == null) {
             return false;
@@ -59,11 +86,18 @@ public class UserService {
         if (userInQuestion.getPassWord() == null || userInQuestion.getPassWord().trim().equals("")){
             return false;
         }
+        if (userInQuestion.getEmail() == null || userInQuestion.getEmail().trim().equals("")){
+            return false;
+        }
         return true;
     }
 
     /**
-     * Validate based on provided credentials
+     * Public void method to validate based on provided credentials
+     *      - checks for null and empty fields from username and password
+     *      - uses the userRepository to findUsersByCredentials(username,password)
+     *      - if authenticated, sets the current user to the authorized user
+     *      - throws AuthenticationException if not
      * @param username
      * @param password
      * @return
