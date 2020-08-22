@@ -1,13 +1,16 @@
 
-[LOG] - 2020-08-21T04:52:19.836Z Initializing application
-[LOG] - Fri Aug 21 00:52:19 EDT 2020 -  Initializing application
-[LOG] - Fri Aug 21 00:52:19 EDT 2020 - Instantiating class com.revature.bankProject0.repositories.UserRepository
-[LOG] - Fri Aug 21 00:52:19 EDT 2020 - Instantiating class com.revature.bankProject0.services.UserService
-[LOG] - Fri Aug 21 00:52:19 EDT 2020 - Adding /homeTo screen set
-[LOG] - Fri Aug 21 00:52:19 EDT 2020 -  Instantiating: com.revature.bankProject0.screens.LoginScreen
-[LOG] - Fri Aug 21 00:52:19 EDT 2020 - Adding /loginTo screen set
-[LOG] - Fri Aug 21 00:52:19 EDT 2020 - Instantiating com.revature.bankProject0.screens.RegisterScreen
-[LOG] - Fri Aug 21 00:52:19 EDT 2020 - Adding /registerTo screen set
-[LOG] - Fri Aug 21 00:52:19 EDT 2020 - Adding /dashTo screen set
-[LOG] - Fri Aug 21 00:52:19 EDT 2020 - Application initialization complete
-[LOG] - Fri Aug 21 00:52:35 EDT 2020 - user: ddavis attempted to log in
+[LOG] - 2020-08-21T05:13:09.176Z Initializing application
+[LOG] - Fri Aug 21 01:13:09 EDT 2020 -  Initializing application
+[LOG] - Fri Aug 21 01:13:09 EDT 2020 - Instantiating class com.revature.bankProject0.repositories.UserRepository
+[LOG] - Fri Aug 21 01:13:09 EDT 2020 - Instantiating class com.revature.bankProject0.services.UserService
+[LOG] - Fri Aug 21 01:13:09 EDT 2020 - Adding /homeTo screen set
+[LOG] - Fri Aug 21 01:13:09 EDT 2020 -  Instantiating: com.revature.bankProject0.screens.LoginScreen
+[LOG] - Fri Aug 21 01:13:09 EDT 2020 - Adding /loginTo screen set
+[LOG] - Fri Aug 21 01:13:09 EDT 2020 - Instantiating com.revature.bankProject0.screens.RegisterScreen
+[LOG] - Fri Aug 21 01:13:09 EDT 2020 - Adding /registerTo screen set
+[LOG] - Fri Aug 21 01:13:09 EDT 2020 - Adding /dashTo screen set
+[LOG] - Fri Aug 21 01:13:09 EDT 2020 - Application initialization complete
+[LOG] - Fri Aug 21 01:13:28 EDT 2020 - new user attempted to sign up: 
+troy,davis,user,pass
+[LOG] - Fri Aug 21 01:13:50 EDT 2020 - new user attempted to sign up: 
+troy,davis,troy,pass

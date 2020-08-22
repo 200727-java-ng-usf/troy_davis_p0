@@ -19,6 +19,9 @@ public class UserRepository {
         LogService.log("Instantiating " + this.getClass().toString());
     }
 
+
+
+
     public Optional<User> findUsersByCredentials(String userName, String password){
 
         Optional<User> user = Optional.empty();
@@ -96,7 +99,7 @@ public class UserRepository {
             psmt.setString(4,newUser.getLastName());
             psmt.setString(5,"null");
             psmt.setString(6,"4");
-            ResultSet rs = psmt.executeQuery();
+            int result = psmt.executeUpdate();
 
             User appUser = newUser;
 
