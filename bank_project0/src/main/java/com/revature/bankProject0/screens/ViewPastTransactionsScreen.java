@@ -1,6 +1,7 @@
 package com.revature.bankProject0.screens;
 
 import com.revature.bankProject0.services.LogService;
+import com.revature.bankProject0.services.TransactionService;
 
 import java.io.IOException;
 
@@ -8,8 +9,11 @@ import static com.revature.bankProject0.AppDriver.app;
 
 public class ViewPastTransactionsScreen extends Screen {
 
-    public ViewPastTransactionsScreen(){
+    private TransactionService transactionService;
+
+    public ViewPastTransactionsScreen(TransactionService transactionService){
         super("ViewPastTransactionsScreen","/viewTransactions");
+        this.transactionService = transactionService;
     }
 
     @Override
@@ -18,8 +22,11 @@ public class ViewPastTransactionsScreen extends Screen {
                         + app.getCurrentUser().getFirstName()
                         + "'s Past Transactions");
         String userSelection;
-        System.out.println("View Past Transactions Page Under Construction!");
-        //TODO: Get user account past transactions
+        System.out.println("Here are your transactions!");
+        transactionService.getTransactionsForAccountAndUser(app.getCurrentUser(), app.getUserAccounts());
+        String transactionsView = app.getAccountTransactions().toString();
+        System.out.println(transactionsView);
+
         System.out.println("1) Back to Dashboard");
         System.out.println("?) Sign Out");
 

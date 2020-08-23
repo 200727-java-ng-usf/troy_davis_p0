@@ -45,7 +45,6 @@ public class AccountService {
     }
 
     public void getAccountsForUser(User user){
-        Set<Optional<Account>> accounts = new HashSet<>();
         if (user != null) {
             app.setUserAccounts(accountRepository.findAccountByUserId(user.getId()));
         }

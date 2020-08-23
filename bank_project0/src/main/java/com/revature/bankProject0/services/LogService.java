@@ -32,6 +32,15 @@ public class LogService {
             e.printStackTrace();
         }
     }
+    public static void logErr(String anErrToLog){
+        //using try with resources block
+        try (BufferedWriter writer = new BufferedWriter(new FileWriter(logFile, true))){
+            Date date = new Date();
+            writer.write("\n"+ "[!ERROR!] - " + date.toString() + " - " + anErrToLog);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
 //    public static void log(Object o){
 //        //using try with resources block
 //        try (BufferedWriter writer = new BufferedWriter(new FileWriter(logFile, true))){

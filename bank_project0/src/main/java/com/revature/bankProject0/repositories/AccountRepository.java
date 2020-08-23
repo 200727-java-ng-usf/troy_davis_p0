@@ -25,6 +25,7 @@ public class AccountRepository {
                                 "ON a.account_primary_owner_id = bu.id " +
                                 "JOIN project_zero.account_types act " +
                                 "ON a.account_type_id = act.id ";
+
     private String baseInsert = "INSERT into project_zero.account ";
 
     public AccountRepository(){

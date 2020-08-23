@@ -1,14 +1,13 @@
 package com.revature.bankProject0.util;
 
 import com.revature.bankProject0.models.Account;
+import com.revature.bankProject0.models.Transaction;
 import com.revature.bankProject0.models.User;
 import com.revature.bankProject0.repositories.AccountRepository;
+import com.revature.bankProject0.repositories.TransactionRepository;
 import com.revature.bankProject0.repositories.UserRepository;
 import com.revature.bankProject0.screens.*;
-import com.revature.bankProject0.services.AccountService;
-import com.revature.bankProject0.services.LogService;
-import com.revature.bankProject0.services.RouterService;
-import com.revature.bankProject0.services.UserService;
+import com.revature.bankProject0.services.*;
 
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
@@ -22,6 +21,7 @@ public class AppState {
     private RouterService routerService;
     private boolean appRunning;
     private Set<Account> userAccounts;
+    private Set<Transaction> accountTransactions;
 
     public AppState(){
         new LogService();
@@ -38,16 +38,23 @@ public class AppState {
         routerService = new RouterService();
 
         this.userAccounts = new HashSet<>();
+
+        this.accountTransactions = new HashSet<>();
+
         final AccountRepository accountRepository = new AccountRepository();
 
         final AccountService accountService = new AccountService(accountRepository);
+
+        final TransactionRepository transactionRepository = new TransactionRepository();
+
+        final TransactionService transactionService = new TransactionService(transactionRepository);
         //add the screens to the router service
         routerService.addScreen(new HomeScreen())
                     .addScreen(new LoginScreen(userService))
                     .addScreen(new RegisterScreen(userService))
                     .addScreen(new DashboardScreen())
                     .addScreen(new ViewAccountScreen(accountService))
-                    .addScreen(new ViewPastTransactionsScreen())
+                    .addScreen(new ViewPastTransactionsScreen(transactionService))
                     .addScreen(new CreateTransactionScreen())
                     .addScreen(new CreateBankAccountScreen(accountService));
         LogService.log("Application initialization complete");
@@ -104,5 +111,16 @@ public class AppState {
     }
     public void addToUserAccounts(Account userAccount){
         this.userAccounts.add(userAccount);
+    }
+
+    public Set<Transaction> getAccountTransactions() {
+        return accountTransactions;
+    }
+
+    public void setAccountTransactions(Set<Transaction> accountTransactions) {
+        this.accountTransactions = accountTransactions;
+    }
+    public void addToAccountTransactions(Set<Transaction> accountTransactions){
+        this.accountTransactions.addAll(accountTransactions);
     }
 }
