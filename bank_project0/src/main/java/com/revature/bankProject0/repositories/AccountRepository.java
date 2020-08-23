@@ -20,20 +20,22 @@ import static com.revature.bankProject0.AppDriver.app;
  * A repository to interact with the database and perform account services
  */
 public class AccountRepository {
-    private String baseAccountPrimaryOwnerQuery = "SELECT * FROM project_zero.account a" +
-                                "JOIN project_zero.bank_users bu" +
-                                "ON a.account_primary_owner_id = bu.id";
-    private String baseInsert = "INSERT into project_zero.account a ";
+    private String baseAccountPrimaryOwnerQuery = "SELECT * FROM project_zero.account a " +
+                                "JOIN project_zero.bank_users bu " +
+                                "ON a.account_primary_owner_id = bu.id " +
+                                "JOIN project_zero.account_types act " +
+                                "ON a.account_type_id = act.id ";
+    private String baseInsert = "INSERT into project_zero.account ";
 
     public AccountRepository(){
         LogService.log("Instantiating " + this.getClass().toString());
     }
 
-    public Optional<Account> findAccountByUserId(Integer userId){
-        Optional<Account> account = Optional.empty();
+    public Set<Account> findAccountByUserId(Integer userId){
+        Set<Account> account = new HashSet<>();
 
         try(Connection conn = ConnectionFactory.getInstance().getConnection()){
-           String sql = baseAccountPrimaryOwnerQuery + "WHERE account_primary_owner_id = ?";
+           String sql = baseAccountPrimaryOwnerQuery + "WHERE a.account_primary_owner_id = ?";
             PreparedStatement psmt = conn.prepareStatement(sql);
             psmt.setInt(1,userId);
 
@@ -41,10 +43,11 @@ public class AccountRepository {
 
             Account account1 = new Account();
 
-            account = mapResultSet(rs).stream().findFirst();
+
+            account = mapResultSet(rs);
 
         }catch (SQLException e){
-            LogService.log(e.getStackTrace());
+            LogService.log(e.toString());
         }
 
         return account;
@@ -65,7 +68,7 @@ public class AccountRepository {
             account = mapResultSet(rs).stream().findFirst();
 
         }catch (SQLException e){
-            LogService.log(e.getStackTrace());
+            LogService.log(e.toString());
         }
 
         return account;
@@ -86,7 +89,7 @@ public class AccountRepository {
             account = mapResultSet(rs).stream().findFirst();
 
         }catch (SQLException e){
-            LogService.log(e.getStackTrace());
+            LogService.log(e.toString());
         }
         return account;
     }
@@ -97,8 +100,8 @@ public class AccountRepository {
         try(Connection conn = ConnectionFactory.getInstance().getConnection()) {
 
             String sql = baseInsert +
-                    "(account_balance, account_primary_owner_id, account_secondary_owner_id, account_type_id)\n" +
-                    "VALUES(?, ?, ?, ?);\n";
+                    "(account_balance, account_primary_owner_id, account_secondary_owner_id, account_type_id) " +
+                    "VALUES(?, ?, ?, ?); ";
 
             PreparedStatement preparedStatement = conn.prepareStatement(sql, new String[] {"id"});
 
@@ -116,7 +119,7 @@ public class AccountRepository {
             }
 
         } catch (SQLException e) {
-            LogService.log(e.getStackTrace());
+            LogService.log(e.toString());
         }
 
 
@@ -141,9 +144,10 @@ public class AccountRepository {
             Account temp = new Account();
             temp.setId(rs.getInt("id"));
             temp.setAccountBalance(((double) rs.getInt("account_balance")));
-            temp.setAccountType(AccountType.getByName(rs.getString("name")));
             temp.setPrimaryOwner(rs.getInt("account_primary_owner_id"));
             temp.setSecondaryOwner(rs.getInt("account_secondary_owner_id"));
+            //temp.setRole(Role.getByName(rs.getString("name")));
+            temp.setAccountType(AccountType.getByName(rs.getString("name")));
             LogService.log("Retrieved Account: " + temp.toString());
             accounts.add(temp);
         }

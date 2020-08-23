@@ -93,12 +93,12 @@ public class Account {
 
     @Override
     public String toString() {
-        return "Account{" +
+        return "Account: " +
                 "id=" + id +
-                ", accountBalance=" + accountBalance +
+                ", accountBalance=" + "$"+accountBalance.doubleValue() +
                 ", accountType=" + accountType +
-                ", primaryOwner=" + primaryOwner +
-                ", secondaryOwner=" + secondaryOwner +
-                '}';
+                //", primaryOwner=" + primaryOwner +
+                //", secondaryOwner=" + secondaryOwner +
+                "\n";
     }
 }

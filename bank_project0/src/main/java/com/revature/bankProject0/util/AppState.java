@@ -13,6 +13,7 @@ import com.revature.bankProject0.services.UserService;
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
 import java.util.HashSet;
+import java.util.Optional;
 import java.util.Set;
 
 public class AppState {
@@ -45,11 +46,13 @@ public class AppState {
                     .addScreen(new LoginScreen(userService))
                     .addScreen(new RegisterScreen(userService))
                     .addScreen(new DashboardScreen())
-                    .addScreen(new ViewAccountScreen())
+                    .addScreen(new ViewAccountScreen(accountService))
                     .addScreen(new ViewPastTransactionsScreen())
                     .addScreen(new CreateTransactionScreen())
                     .addScreen(new CreateBankAccountScreen(accountService));
         LogService.log("Application initialization complete");
+
+
     }
 
     public BufferedReader getConsole() {
@@ -92,6 +95,7 @@ public class AppState {
     }
 
     public Set<Account> getUserAccounts() {
+
         return userAccounts;
     }
 

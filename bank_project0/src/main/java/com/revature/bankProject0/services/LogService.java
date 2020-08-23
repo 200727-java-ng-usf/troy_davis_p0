@@ -32,13 +32,13 @@ public class LogService {
             e.printStackTrace();
         }
     }
-    public static void log(Object o){
-        //using try with resources block
-        try (BufferedWriter writer = new BufferedWriter(new FileWriter(logFile, true))){
-            Date date = new Date();
-            writer.write("\n"+ "[OBJECT - LOG] - " + date.toString() + " - " + o.toString());
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-    }
+//    public static void log(Object o){
+//        //using try with resources block
+//        try (BufferedWriter writer = new BufferedWriter(new FileWriter(logFile, true))){
+//            Date date = new Date();
+//            writer.write("\n"+ "[OBJECT - LOG] - " + date.toString() + " - " + o.toString());
+//        } catch (IOException e) {
+//            e.printStackTrace();
+//        }
+//    }
 }

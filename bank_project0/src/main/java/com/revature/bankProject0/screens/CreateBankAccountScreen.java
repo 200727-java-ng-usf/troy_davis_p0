@@ -54,7 +54,7 @@ public class CreateBankAccountScreen extends Screen{
             }
 
         } catch (IOException e) {
-            LogService.log(e.getStackTrace());
+            LogService.log(e.toString());
             //kill the application
             app.setAppRunning(false);
         }
