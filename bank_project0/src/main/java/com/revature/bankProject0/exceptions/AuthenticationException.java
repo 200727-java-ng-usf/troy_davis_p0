@@ -4,7 +4,7 @@ import com.revature.bankProject0.services.LogService;
 
 public class AuthenticationException extends RuntimeException{
     public AuthenticationException(){
-        super();
+        super("User authentication failed!");
     }
     public AuthenticationException(String msg){
         super(msg);

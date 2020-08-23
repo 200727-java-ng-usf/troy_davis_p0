@@ -29,15 +29,17 @@ public class User {
      * @param userName
      * @param passWord
      */
-    public User(String firstName, String lastName, String userName, String passWord) {
+    public User(String firstName, String lastName, String userName, String passWord, String email) {
         this.firstName = firstName;
         this.lastName = lastName;
         this.userName = userName;
         this.passWord = passWord;
-    }
-    public User(String firstName, String lastName, String userName, String passWord, String email) {
-        this(firstName,lastName,userName,passWord);
         this.email = email;
+        this.role = Role.LOCKED;
+    }
+    public User(String firstName, String lastName, String userName, String passWord,String email, Role role) {
+        this(firstName,lastName,userName,passWord,email );
+        this.role = role;
     }
     /**
      * Create a basic user with id, first and last names, username, and password
@@ -47,25 +49,10 @@ public class User {
      * @param userName
      * @param passWord
      */
-    public User(Integer id, String firstName, String lastName, String userName, String passWord, String email) {
-        this(firstName, lastName, userName, passWord, email);
+    public User(Integer id, String firstName, String lastName, String userName, String passWord, String email, Role role) {
+        this(firstName, lastName, userName, passWord, email, role);
         this.id = id;
     }
-
-    /**
-     * Create user with all fields
-     * @param id
-     * @param firstName
-     * @param lastName
-     * @param userName
-     * @param passWord
-     * @param role
-     */
-    public User(Integer id, String firstName, String lastName, String userName, String passWord,String email, Role role) {
-        this(id,firstName, lastName, userName, passWord,email);
-        this.role = role;
-    }
-
     /**
      *Copy constructor (used for conveniently copying the fields of one instance into another instance)
      * @param copy
@@ -73,7 +60,6 @@ public class User {
     public User(User copy){
         this(copy.id, copy.firstName, copy.lastName, copy.userName, copy.passWord, copy.email, copy.role);
     }
-
 
     public Integer getId() {
         return id;

@@ -18,24 +18,27 @@ public class AppState {
 
     public AppState(){
         new LogService();
-        LogService.log(" Initializing application");
-
+        LogService.log("Initializing Application");
+        //set the app to running
         appRunning = true;
         //initialize the console
         console =  new BufferedReader(new InputStreamReader(System.in));
-
+        //create instance of user repository
         final UserRepository userRepository = new UserRepository();
-
+        //create instance of user service
         final UserService userService = new UserService(userRepository);
-
+        //create instance of new router service
         routerService = new RouterService();
 
+        //add the screens to the router service
         routerService.addScreen(new HomeScreen())
                     .addScreen(new LoginScreen(userService))
                     .addScreen(new RegisterScreen(userService))
                     .addScreen(new DashboardScreen())
                     .addScreen(new ViewAccountScreen())
-                    .addScreen(new ViewPastTransactionsScreen());
+                    .addScreen(new ViewPastTransactionsScreen())
+                    .addScreen(new CreateTransactionScreen())
+                    .addScreen(new CreateBankAccountScreen());
         LogService.log("Application initialization complete");
     }
 

@@ -15,7 +15,7 @@ public class LogService {
         if (logFile.exists()){
             try (BufferedWriter writer = new BufferedWriter(new FileWriter(logFile))){
                 Date date = new Date();
-                writer.write("\n"+ "[LOG] - " + date.toInstant() + " " + "Initializing application");
+                writer.write("\n"+ "[LOG] - " + date.toString() + " - " + "Initializing Log Filer");
             } catch (IOException e) {
                 e.printStackTrace();
             }

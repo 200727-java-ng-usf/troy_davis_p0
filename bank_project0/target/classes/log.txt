@@ -1,13 +1,22 @@
 
-[LOG] - 2020-08-22T02:15:23.050Z Initializing application
-[LOG] - Fri Aug 21 22:15:23 EDT 2020 -  Initializing application
-[LOG] - Fri Aug 21 22:15:23 EDT 2020 - Instantiating class com.revature.bankProject0.repositories.UserRepository
-[LOG] - Fri Aug 21 22:15:23 EDT 2020 - Instantiating class com.revature.bankProject0.services.UserService
-[LOG] - Fri Aug 21 22:15:23 EDT 2020 - Adding /homeTo screen set
-[LOG] - Fri Aug 21 22:15:23 EDT 2020 -  Instantiating: com.revature.bankProject0.screens.LoginScreen
-[LOG] - Fri Aug 21 22:15:23 EDT 2020 - Adding /loginTo screen set
-[LOG] - Fri Aug 21 22:15:23 EDT 2020 - Instantiating com.revature.bankProject0.screens.RegisterScreen
-[LOG] - Fri Aug 21 22:15:23 EDT 2020 - Adding /registerTo screen set
-[LOG] - Fri Aug 21 22:15:23 EDT 2020 - Adding /dashTo screen set
-[LOG] - Fri Aug 21 22:15:23 EDT 2020 - Application initialization complete
-[LOG] - Fri Aug 21 22:15:36 EDT 2020 - user: tmd1990 attempted to log in
+[LOG] - Sat Aug 22 20:56:47 EDT 2020 - Initializing Log Filer
+[LOG] - Sat Aug 22 20:56:47 EDT 2020 - Initializing Application
+[LOG] - Sat Aug 22 20:56:47 EDT 2020 - Instantiating class com.revature.bankProject0.repositories.UserRepository
+[LOG] - Sat Aug 22 20:56:47 EDT 2020 - Instantiating class com.revature.bankProject0.services.UserService
+[LOG] - Sat Aug 22 20:56:47 EDT 2020 - Adding /homeTo screen set
+[LOG] - Sat Aug 22 20:56:47 EDT 2020 - Instantiating: com.revature.bankProject0.screens.LoginScreen
+[LOG] - Sat Aug 22 20:56:47 EDT 2020 - Adding /loginTo screen set
+[LOG] - Sat Aug 22 20:56:47 EDT 2020 - Instantiating com.revature.bankProject0.screens.RegisterScreen
+[LOG] - Sat Aug 22 20:56:47 EDT 2020 - Adding /registerTo screen set
+[LOG] - Sat Aug 22 20:56:47 EDT 2020 - Adding /dashTo screen set
+[LOG] - Sat Aug 22 20:56:47 EDT 2020 - Adding /viewAccountTo screen set
+[LOG] - Sat Aug 22 20:56:47 EDT 2020 - Adding /viewTransactionsTo screen set
+[LOG] - Sat Aug 22 20:56:47 EDT 2020 - Adding /createTransactionTo screen set
+[LOG] - Sat Aug 22 20:56:47 EDT 2020 - Adding /createAccountTo screen set
+[LOG] - Sat Aug 22 20:56:47 EDT 2020 - Application initialization complete
+[LOG] - Sat Aug 22 20:57:13 EDT 2020 - new user attempted to sign up: 
+troy,davis,tmd1990,password,tmd@g.co
+[LOG] - Sat Aug 22 20:57:15 EDT 2020 - Rendering troy's Dashboard...
+[LOG] - Sat Aug 22 21:03:34 EDT 2020 - Rendering troy's Account...
+[LOG] - Sat Aug 22 21:03:39 EDT 2020 - Rendering troy's Dashboard...
+[LOG] - Sat Aug 22 21:03:41 EDT 2020 - tmd1990 signing out...

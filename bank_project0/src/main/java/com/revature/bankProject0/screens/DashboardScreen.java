@@ -29,7 +29,7 @@ public class DashboardScreen extends Screen{
             System.out.println("1) View Accounts");
             System.out.println("2) View Past Transactions");
             System.out.println("3) Create New Transaction");
-            System.out.println("4) Create New Account");
+            System.out.println("4) Create New Bank Account");
             System.out.println("?) Sign Out");
 
             try {
