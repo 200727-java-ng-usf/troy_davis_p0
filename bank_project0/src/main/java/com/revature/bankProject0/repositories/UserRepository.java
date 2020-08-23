@@ -131,7 +131,7 @@ public class UserRepository {
             temp.setPassWord(rs.getString("password"));
             temp.setEmail(rs.getString("email"));
             temp.setRole(Role.getByName(rs.getString("name")));
-            System.out.println(temp);
+            LogService.log("Retrieved User: " + temp.toString());
             users.add(temp);
         }
 

@@ -1,31 +1,32 @@
 package com.revature.bankProject0.models;
 
+import javax.swing.*;
 import java.util.Objects;
 
 public class Account {
     private Integer id;
     private Double accountBalance;
     private AccountType accountType;
-    private User primaryOwner;
-    private User secondaryOwner;
+    private Integer primaryOwner;
+    private Integer secondaryOwner;
 
     public Account(){
         super();
     }
 
-    public Account(AccountType accountType, User primaryOwner){
+    public Account(AccountType accountType, Integer primaryOwner){
         this.accountType = accountType;
         this.primaryOwner = primaryOwner;
     }
-    public Account(Double accountBalance, AccountType accountType, User primaryOwner){
+    public Account(Double accountBalance, AccountType accountType, Integer primaryOwner){
         this(accountType,primaryOwner);
         this.accountBalance = accountBalance;
     }
-    public Account(Integer id,Double accountBalance, AccountType accountType, User primaryOwner){
+    public Account(Integer id,Double accountBalance, AccountType accountType,Integer primaryOwner){
         this(accountBalance,accountType,primaryOwner);
         this.id = id;
     }
-    public Account(Integer id,Double accountBalance, AccountType accountType, User primaryOwner, User secondaryOwner){
+    public Account(Integer id,Double accountBalance, AccountType accountType, Integer primaryOwner, Integer secondaryOwner){
         this(id,accountBalance,accountType,primaryOwner);
         this.secondaryOwner = secondaryOwner;
     }
@@ -57,19 +58,19 @@ public class Account {
         this.accountType = accountType;
     }
 
-    public User getPrimaryOwner() {
+    public Integer getPrimaryOwner() {
         return primaryOwner;
     }
 
-    public void setPrimaryOwner(User primaryOwner) {
+    public void setPrimaryOwner(Integer primaryOwner) {
         this.primaryOwner = primaryOwner;
     }
 
-    public User getSecondaryOwner() {
+    public Integer getSecondaryOwner() {
         return secondaryOwner;
     }
 
-    public void setSecondaryOwner(User secondaryOwner) {
+    public void setSecondaryOwner(Integer secondaryOwner) {
         this.secondaryOwner = secondaryOwner;
     }
 

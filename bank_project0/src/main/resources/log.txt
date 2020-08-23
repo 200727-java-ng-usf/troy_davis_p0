@@ -1,20 +1,28 @@
 
-[LOG] - Sat Aug 22 21:08:52 EDT 2020 - Initializing Log Filer
-[LOG] - Sat Aug 22 21:08:52 EDT 2020 - Initializing Application
-[LOG] - Sat Aug 22 21:08:52 EDT 2020 - Instantiating class com.revature.bankProject0.repositories.UserRepository
-[LOG] - Sat Aug 22 21:08:52 EDT 2020 - Instantiating class com.revature.bankProject0.services.UserService
-[LOG] - Sat Aug 22 21:08:52 EDT 2020 - Adding /homeTo screen set
-[LOG] - Sat Aug 22 21:08:52 EDT 2020 - Instantiating: com.revature.bankProject0.screens.LoginScreen
-[LOG] - Sat Aug 22 21:08:52 EDT 2020 - Adding /loginTo screen set
-[LOG] - Sat Aug 22 21:08:52 EDT 2020 - Instantiating com.revature.bankProject0.screens.RegisterScreen
-[LOG] - Sat Aug 22 21:08:52 EDT 2020 - Adding /registerTo screen set
-[LOG] - Sat Aug 22 21:08:52 EDT 2020 - Adding /dashTo screen set
-[LOG] - Sat Aug 22 21:08:52 EDT 2020 - Adding /viewAccountTo screen set
-[LOG] - Sat Aug 22 21:08:52 EDT 2020 - Adding /viewTransactionsTo screen set
-[LOG] - Sat Aug 22 21:08:52 EDT 2020 - Adding /createTransactionTo screen set
-[LOG] - Sat Aug 22 21:08:52 EDT 2020 - Adding /createAccountTo screen set
-[LOG] - Sat Aug 22 21:08:52 EDT 2020 - Application initialization complete
-[LOG] - Sat Aug 22 21:09:11 EDT 2020 - new user attempted to sign up: 
-kaila,davis,kay123,password,kay123
-[LOG] - Sat Aug 22 21:09:13 EDT 2020 - Rendering kaila's Dashboard...
-[LOG] - Sat Aug 22 21:09:36 EDT 2020 - Rendering kaila's Create Account Screen...
+[LOG] - Sun Aug 23 01:09:04 EDT 2020 - Initializing Log Filer
+[LOG] - Sun Aug 23 01:09:04 EDT 2020 - Initializing Application
+[LOG] - Sun Aug 23 01:09:04 EDT 2020 - Instantiating class com.revature.bankProject0.repositories.UserRepository
+[LOG] - Sun Aug 23 01:09:04 EDT 2020 - Instantiating class com.revature.bankProject0.services.UserService
+[LOG] - Sun Aug 23 01:09:04 EDT 2020 - Instantiating class com.revature.bankProject0.repositories.AccountRepository
+[LOG] - Sun Aug 23 01:09:04 EDT 2020 - Instantiating class com.revature.bankProject0.services.AccountService
+[LOG] - Sun Aug 23 01:09:04 EDT 2020 - Adding /homeTo screen set
+[LOG] - Sun Aug 23 01:09:04 EDT 2020 - Instantiating: com.revature.bankProject0.screens.LoginScreen
+[LOG] - Sun Aug 23 01:09:04 EDT 2020 - Adding /loginTo screen set
+[LOG] - Sun Aug 23 01:09:04 EDT 2020 - Instantiating com.revature.bankProject0.screens.RegisterScreen
+[LOG] - Sun Aug 23 01:09:04 EDT 2020 - Adding /registerTo screen set
+[LOG] - Sun Aug 23 01:09:04 EDT 2020 - Adding /dashTo screen set
+[LOG] - Sun Aug 23 01:09:04 EDT 2020 - Adding /viewAccountTo screen set
+[LOG] - Sun Aug 23 01:09:04 EDT 2020 - Adding /viewTransactionsTo screen set
+[LOG] - Sun Aug 23 01:09:04 EDT 2020 - Adding /createTransactionTo screen set
+[LOG] - Sun Aug 23 01:09:04 EDT 2020 - Adding /createAccountTo screen set
+[LOG] - Sun Aug 23 01:09:04 EDT 2020 - Application initialization complete
+[LOG] - Sun Aug 23 01:09:17 EDT 2020 - user: tmd1990 attempted to log in
+[LOG] - Sun Aug 23 01:09:18 EDT 2020 - Retrieved User: User{id=1, firstName='troy', lastName='davis', userName='tmd1990', passWord='password', email='tmd@g.co', role=Locked}
+[LOG] - Sun Aug 23 01:09:18 EDT 2020 - Rendering troy's Dashboard...
+[LOG] - Sun Aug 23 01:09:21 EDT 2020 - Rendering troy's Create Account Screen...
+[OBJECT - LOG] - Sun Aug 23 01:09:24 EDT 2020 - [Ljava.lang.StackTraceElement;@2984e22c
+[LOG] - Sun Aug 23 01:09:24 EDT 2020 - Rendering troy's Dashboard...
+[LOG] - Sun Aug 23 01:09:44 EDT 2020 - Rendering troy's Create Account Screen...
+[OBJECT - LOG] - Sun Aug 23 01:09:47 EDT 2020 - [Ljava.lang.StackTraceElement;@7ba18f9e
+[LOG] - Sun Aug 23 01:09:47 EDT 2020 - Rendering troy's Dashboard...
+[LOG] - Sun Aug 23 01:09:49 EDT 2020 - tmd1990 signing out...

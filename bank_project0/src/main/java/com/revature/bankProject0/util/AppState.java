@@ -1,20 +1,26 @@
 package com.revature.bankProject0.util;
 
+import com.revature.bankProject0.models.Account;
 import com.revature.bankProject0.models.User;
+import com.revature.bankProject0.repositories.AccountRepository;
 import com.revature.bankProject0.repositories.UserRepository;
 import com.revature.bankProject0.screens.*;
+import com.revature.bankProject0.services.AccountService;
 import com.revature.bankProject0.services.LogService;
 import com.revature.bankProject0.services.RouterService;
 import com.revature.bankProject0.services.UserService;
 
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
+import java.util.HashSet;
+import java.util.Set;
 
 public class AppState {
     private BufferedReader console;
     private User currentUser;
     private RouterService routerService;
     private boolean appRunning;
+    private Set<Account> userAccounts;
 
     public AppState(){
         new LogService();
@@ -30,6 +36,10 @@ public class AppState {
         //create instance of new router service
         routerService = new RouterService();
 
+        this.userAccounts = new HashSet<>();
+        final AccountRepository accountRepository = new AccountRepository();
+
+        final AccountService accountService = new AccountService(accountRepository);
         //add the screens to the router service
         routerService.addScreen(new HomeScreen())
                     .addScreen(new LoginScreen(userService))
@@ -38,7 +48,7 @@ public class AppState {
                     .addScreen(new ViewAccountScreen())
                     .addScreen(new ViewPastTransactionsScreen())
                     .addScreen(new CreateTransactionScreen())
-                    .addScreen(new CreateBankAccountScreen());
+                    .addScreen(new CreateBankAccountScreen(accountService));
         LogService.log("Application initialization complete");
     }
 
@@ -79,5 +89,16 @@ public class AppState {
     }
     public void invalidateCurrentSession(){
         currentUser = null;
+    }
+
+    public Set<Account> getUserAccounts() {
+        return userAccounts;
+    }
+
+    public void setUserAccounts(Set<Account> userAccounts) {
+        this.userAccounts = userAccounts;
+    }
+    public void addToUserAccounts(Account userAccount){
+        this.userAccounts.add(userAccount);
     }
 }
