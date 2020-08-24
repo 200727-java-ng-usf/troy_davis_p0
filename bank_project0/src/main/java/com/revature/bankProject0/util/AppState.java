@@ -55,7 +55,7 @@ public class AppState {
                     .addScreen(new DashboardScreen())
                     .addScreen(new ViewAccountScreen(accountService))
                     .addScreen(new ViewPastTransactionsScreen(transactionService))
-                    .addScreen(new CreateTransactionScreen())
+                    .addScreen(new CreateTransactionScreen(transactionService,accountService,userService))
                     .addScreen(new CreateBankAccountScreen(accountService));
         LogService.log("Application initialization complete");
 

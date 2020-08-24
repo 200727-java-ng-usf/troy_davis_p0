@@ -50,6 +50,14 @@ public class AccountService {
         }
     }
 
+    public boolean updateAccountBalance(Account account, Double newBalance){
+        //check for over-drafting and null values
+        if(account == null || newBalance == null || newBalance < 0.0d){
+            return false;
+        }
+
+        return true;
+    }
 
     public boolean isAccountValid(Account accountInQuestion){
         if (accountInQuestion == null){

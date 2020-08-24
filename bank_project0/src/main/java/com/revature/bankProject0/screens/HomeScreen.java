@@ -37,7 +37,7 @@ public class HomeScreen extends Screen{
                 System.out.println("Bye!");
             }
         } catch (IOException e) {
-            e.printStackTrace();
+            LogService.logErr(e.toString());
         }
     }
 }

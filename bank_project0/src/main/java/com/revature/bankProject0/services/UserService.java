@@ -104,6 +104,7 @@ public class UserService {
      */
     public void authenticate(String username, String password){
         if (username == null || username.trim().equals("") || password == null || password.trim().equals("")){
+            LogService.logErr("Invalid credential values provided");
             throw new InvalidRequestException("Invalid credential values provided");
         }
         User authUser = userRepository.findUsersByCredentials(username,password)

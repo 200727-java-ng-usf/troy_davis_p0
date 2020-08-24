@@ -59,7 +59,7 @@ public class RegisterScreen extends Screen {
 
 
         } catch (IOException e) {
-            e.printStackTrace();
+            LogService.logErr(toString());
             app.setAppRunning(false);
         }
     }

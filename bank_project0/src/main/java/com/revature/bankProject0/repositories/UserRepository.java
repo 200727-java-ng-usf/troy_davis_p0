@@ -43,7 +43,7 @@ public class UserRepository {
             user = mapResultSet(rs).stream().findFirst();
 
         } catch (SQLException e) {
-            LogService.log(e.toString());
+            LogService.logErr(e.toString());
         }
 
         return user;
@@ -61,7 +61,7 @@ public class UserRepository {
             user = mapResultSet(rs).stream().findFirst();
 
         } catch (SQLException e) {
-            LogService.log(e.toString());
+            LogService.logErr(e.toString());
         }
 
 
@@ -81,7 +81,7 @@ public class UserRepository {
             _user = mapResultSet(rs).stream().findFirst();
 
         } catch (SQLException e) {
-            LogService.log(e.toString());
+            LogService.logErr(e.toString());
         }
 
         return _user;
@@ -114,7 +114,7 @@ public class UserRepository {
             }
 
         } catch (SQLException e) {
-            LogService.log(e.toString());
+            LogService.logErr(e.toString());
         }
         return user;
     }

@@ -39,7 +39,7 @@ public class ViewAccountScreen extends Screen {
                     break;
             }
         } catch (IOException e) {
-            LogService.log(e.toString());
+            LogService.logErr(e.toString());
             //kill the application
             app.setAppRunning(false);
         }

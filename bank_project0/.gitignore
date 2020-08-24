@@ -32,3 +32,4 @@ out/
 
 #properties files
 *.properties
+*.sql

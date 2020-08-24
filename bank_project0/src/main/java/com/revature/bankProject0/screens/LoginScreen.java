@@ -47,7 +47,7 @@ public class LoginScreen extends Screen{
             }
 
         } catch (IOException e) {
-            LogService.log(Arrays.toString(e.getStackTrace()));
+            LogService.logErr(Arrays.toString(e.getStackTrace()));
         }
     }
 }

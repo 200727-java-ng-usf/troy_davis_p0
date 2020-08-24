@@ -47,13 +47,23 @@ public class TransactionRepository {
                     transaction.setId(resultSet.getInt(1));
                 }
             }
+            String sql = "UPDATE project_zero.account\n" +
+                    "SET account_balance= ?\n" +
+                    "WHERE id= ? and account_primary_owner_id= ? and account_secondary_owner_id= ? ;";
+            PreparedStatement preparedStatement2 = conn.prepareStatement(sql, new String[]{"id"});
+            if (transaction.getTransactionType().equals(TransactionType.DEPOSIT)){
+                //TODO: FINISH CALCULATING THE ENDING BALANCE
+            }
+            preparedStatement2.setDouble(1,transaction.getAccountBalance());
 
         } catch (SQLException e) {
-            e.printStackTrace();
+            LogService.logErr(e.toString());
         }
 
         return optionalTransaction;
     }
+
+
 
     public Set<Transaction> findTransactionsByUserAndAccount(Integer userId, Integer accountId){
         Set<Transaction> accounts = new HashSet<>();
@@ -72,7 +82,7 @@ public class TransactionRepository {
             accounts = mapResultSet(rs);
 
         }catch (SQLException e){
-            LogService.log(e.toString());
+            LogService.logErr(e.toString());
         }
 
         return accounts;

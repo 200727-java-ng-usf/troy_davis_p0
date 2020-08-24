@@ -59,7 +59,7 @@ public class CreateTransactionScreen extends Screen{
             transaction.setTransactionAmount(Double.valueOf(app.getConsole().readLine()));
 //            transaction.setAccountBalance();
         } catch (IOException e) {
-            LogService.log(e.toString());
+            LogService.logErr(e.toString());
             //kill the application
             app.setAppRunning(false);
         }

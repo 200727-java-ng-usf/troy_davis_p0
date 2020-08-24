@@ -28,6 +28,7 @@ public class AccountRepository {
 
     private String baseInsert = "INSERT into project_zero.account ";
 
+
     public AccountRepository(){
         LogService.log("Instantiating " + this.getClass().toString());
     }
@@ -48,7 +49,7 @@ public class AccountRepository {
             account = mapResultSet(rs);
 
         }catch (SQLException e){
-            LogService.log(e.toString());
+            LogService.logErr(e.toString());
         }
 
         return account;
@@ -69,7 +70,7 @@ public class AccountRepository {
             account = mapResultSet(rs).stream().findFirst();
 
         }catch (SQLException e){
-            LogService.log(e.toString());
+            LogService.logErr(e.toString());
         }
 
         return account;
@@ -90,7 +91,7 @@ public class AccountRepository {
             account = mapResultSet(rs).stream().findFirst();
 
         }catch (SQLException e){
-            LogService.log(e.toString());
+            LogService.logErr(e.toString());
         }
         return account;
     }
@@ -120,14 +121,28 @@ public class AccountRepository {
             }
 
         } catch (SQLException e) {
-            LogService.log(e.toString());
+            LogService.logErr(e.toString());
         }
 
 
         return optionalAccount;
     }
 
+    public Account updateAccountBalance(Integer accountId, Integer ownerId, Double newBalance){
+        Account updatedAccount = new Account();
 
+        try(Connection conn = ConnectionFactory.getInstance().getConnection()) {
+
+            String sql = "UPDATE project_zero.account\n" +
+                    "SET account_balance= ?\n" +
+                    "WHERE id= ? and account_primary_owner_id= ? and account_secondary_owner_id= ? ;";
+            PreparedStatement preparedStatement = conn.prepareStatement(sql, new String[]{"id"});
+
+        } catch (SQLException e) {
+            LogService.logErr(e.toString());
+        }
+        return updatedAccount;
+    }
 
 
 
