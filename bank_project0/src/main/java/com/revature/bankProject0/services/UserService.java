@@ -6,7 +6,6 @@ import com.revature.bankProject0.models.Role;
 import com.revature.bankProject0.models.User;
 import com.revature.bankProject0.repositories.UserRepository;
 
-import java.util.HashSet;
 import java.util.Optional;
 import java.util.Set;
 
@@ -114,22 +113,45 @@ public class UserService {
     }
 
     public Set<User> getAllUsers(){
-        return new HashSet<>();
+        return userRepository.getAllUsers();
     }
-    public Set<User> getUsersByRole(){
-        return new HashSet<>();
+    public Set<User> getUsersByRole(Role role){
+        return userRepository.getUsersByRole(role);
     }
-    public User getUserById(int id){
-        return null;
+    public Optional<User> getUserById(int id){
+        return userRepository.findUserByUserId(id);
     }
-    public User getUsersByUsername(String username){
-        return null;
+    public Optional<User> getUsersByUsername(String username){
+        if (username == null){
+            return null;
+        }
+        return userRepository.findUserByUserName(username);
     }
     public boolean deleteUserById(int id){
-        return false;
+        return userRepository.deleteUserById(id);
     }
-    public boolean update (User updatedUser){
-        return false;
+
+    public void update (User updatedUser){
+        if (!isUserValid(updatedUser)){
+            LogService.log("Invalid user fields provided during registration");
+            throw new InvalidRequestException("Invalid user fields provided during registration");
+        }
+
+        Optional<User> existingUser = userRepository.findUserByUserName(updatedUser.getUserName());
+        if (existingUser.isPresent()){
+            System.out.println("Provided username is already in use!");
+            app.getRouterService().route("/register");
+        }
+
+        Optional<User> existingUserEmail = userRepository.findUserByEmail(updatedUser.getEmail());
+        if (existingUserEmail.isPresent()) {
+            // TODO implement a custom ResourcePersistenceException
+            throw new RuntimeException("Provided username is already in use!");
+        }
+
+        updatedUser.setRole(Role.BASIC_USER);
+        userRepository.update(updatedUser);
+        app.setCurrentUser(updatedUser);
     }
 
 

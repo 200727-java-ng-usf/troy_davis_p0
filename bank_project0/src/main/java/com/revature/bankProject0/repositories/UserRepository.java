@@ -189,6 +189,38 @@ public class UserRepository {
         return user;
     }
 
+    public Optional<User> update(User newUser){
+        Optional<User> updatedUser = Optional.empty();
+        try (Connection conn = ConnectionFactory.getInstance().getConnection()){
+
+            String sql = "UPDATE project_zero.bank_users\n" +
+                    "SET username=? , password = ?, first_name=?, last_name=?, email=?, role_id=?\n" +
+                    "WHERE id=?;\n "
+                    ;
+            PreparedStatement psmt = conn.prepareStatement(sql,new String[] {"id"});
+            psmt.setString(1,newUser.getUserName());
+            psmt.setString(2,newUser.getPassWord());
+            psmt.setString(3,newUser.getFirstName());
+            psmt.setString(4,newUser.getLastName());
+            psmt.setString(5,newUser.getEmail());
+            psmt.setInt(6,newUser.getRole().ordinal() + 1);
+            psmt.setInt(7,newUser.getId());
+
+            //get number of affected rows
+            int rowsInserted = psmt.executeUpdate();
+            if (rowsInserted !=0){
+                ResultSet rs = psmt.getGeneratedKeys();
+                while (rs.next()){
+                    //get the generated primary key, the user id number
+                    newUser.setId(rs.getInt(1));
+                }
+            }
+
+        } catch (SQLException e) {
+            LogService.logErr(e.toString());
+        }
+        return updatedUser;
+    }
 
     private Set<User> mapResultSet(ResultSet rs) throws SQLException {
 
