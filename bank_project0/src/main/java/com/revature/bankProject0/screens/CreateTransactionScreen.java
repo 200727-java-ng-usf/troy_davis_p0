@@ -1,5 +1,6 @@
 package com.revature.bankProject0.screens;
 
+import com.revature.bankProject0.models.ConsoleColors;
 import com.revature.bankProject0.models.Transaction;
 import com.revature.bankProject0.models.TransactionType;
 import com.revature.bankProject0.services.AccountService;
@@ -8,6 +9,7 @@ import com.revature.bankProject0.services.TransactionService;
 import com.revature.bankProject0.services.UserService;
 
 import java.io.IOException;
+import java.util.InputMismatchException;
 
 import static com.revature.bankProject0.AppDriver.app;
 
@@ -29,40 +31,75 @@ public class CreateTransactionScreen extends Screen{
         LogService.log("Rendering " + app.getCurrentUser().getFirstName() + "'s Create Transaction Screen...");
         String userSelection;
 
-        System.out.println("What would you like to do?");
-        System.out.println("1) Create Deposit");
-        System.out.println("2) Create Withdrawal");
-        System.out.println("?) back to Dash");
 
         try {
+            System.out.println("What would you like to do?");
+            System.out.println("1) Create Deposit");
+            System.out.println("2) Create Withdrawal");
             System.out.println("Choose...");
             userSelection = app.getConsole().readLine();
+
             Transaction transaction = new Transaction();
+            transaction.setPrimaryAccountOwner(app.getCurrentUser().getId());
+            System.out.println("Here are your account details:");
+            accountService.getAccountsForUser(app.getCurrentUser());
+            System.out.println(app.getUserAccounts());
+            System.out.println();
+            System.out.println("Enter the account number that you would like to use: ");
+            System.out.print("account number: ");
+            transaction.setAccountNumber(Integer.valueOf(app.getConsole().readLine()));
+            transaction.setAccountBalance(app.getCurrentAccount(transaction.getAccountNumber()).getAccountBalance());
+
+
+            System.out.println("Enter the amount: ");
+            System.out.print("$");
+            transaction.setTransactionAmount(Double.valueOf(app.getConsole().readLine()));
             switch (userSelection){
                 case "1":
                     transaction.setTransactionType(TransactionType.DEPOSIT);
+                    transaction.setEndingBalance(transaction.getAccountBalance() + transaction.getTransactionAmount());
+
+                    transactionService.createDepositTransaction(transaction);
+                    transactionService.getTransactionsForAccountAndUser(app.getCurrentUser(), app.getUserAccounts());
+                    String transactionsView = app.getAccountTransactions().toString();
+                    System.out.println("Success, here are your transactions: ");
+                    System.out.println(transactionsView);
+
+                    app.getRouterService().route("/dash");
                     break;
                 case "2":
+                    if (transaction.getTransactionAmount() > transaction.getAccountBalance()){
+                        System.out.println("Sorry No Over-Drafting!");
+                        app.getRouterService().route("/createTransaction");
+                    }
                     transaction.setTransactionType(TransactionType.WITHDRAWAL);
+                    transaction.setEndingBalance(transaction.getAccountBalance() - transaction.getTransactionAmount());
+                    transactionService.createWithdrawalTransaction(transaction);
+
+                    System.out.println("Success! here are your transaction details: ");
+                    System.out.println(transaction);
+                    app.getRouterService().route("/dash");
+
                     break;
                 default:
                     app.getRouterService().route("/dash");
                     break;
             }
-            transaction.setPrimaryAccountOwner(app.getCurrentUser().getId());
-            System.out.println("Here are your account details:");
-            System.out.println(app.getUserAccounts());
-            System.out.println("Enter the account number that you would like to use: ");
-            System.out.print("account number: ");
-            transaction.setAccountNumber(Integer.valueOf(app.getConsole().readLine()));
-            System.out.println("Enter the amount: ");
-            transaction.setTransactionAmount(Double.valueOf(app.getConsole().readLine()));
-//            transaction.setAccountBalance();
-        } catch (IOException e) {
+
+
+
+
+
+        } catch (IOException | InputMismatchException | NullPointerException e) {
+            LogService.logErr(e.toString());
+            System.out.println("Something went wrong, please try again!");
+            app.getRouterService().route("/dash");
+        }catch (Exception e){
             LogService.logErr(e.toString());
             //kill the application
             app.setAppRunning(false);
         }
+
 
     }
 }

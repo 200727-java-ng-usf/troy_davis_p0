@@ -11,8 +11,13 @@ import java.sql.SQLException;
 import java.util.HashSet;
 import java.util.Optional;
 import java.util.Set;
+import java.util.stream.Collectors;
 
+/**
+ * Class to interact with the database on tables concerning users
+ */
 public class UserRepository {
+
 
     private String baseQuery = "SELECT * FROM project_zero.bank_users bu " +
                                 "JOIN project_zero.user_roles ur " +
@@ -21,8 +26,6 @@ public class UserRepository {
     public UserRepository(){
         LogService.log("Instantiating " + this.getClass().toString());
     }
-
-
 
 
     public Optional<User> findUsersByCredentials(String userName, String password){
@@ -67,6 +70,24 @@ public class UserRepository {
 
         return user;
     }
+
+    public Optional<User> findUserByUserId(Integer userId){
+        Optional<User> user = Optional.empty();
+        try (Connection conn = ConnectionFactory.getInstance().getConnection()){
+
+            String sql = baseQuery + "WHERE id = ?";
+            PreparedStatement psmt = conn.prepareStatement(sql);
+            psmt.setInt(1, userId);
+            ResultSet rs = psmt.executeQuery();
+
+            user = mapResultSet(rs).stream().findFirst();
+
+        } catch (SQLException e) {
+            LogService.logErr(e.toString());
+        }
+        return user;
+    }
+
     public Optional<User> findUserByEmail(String email) {
 
         Optional<User> _user = Optional.empty();
@@ -86,6 +107,55 @@ public class UserRepository {
 
         return _user;
 
+    }
+    /**
+     * Method to get all users from the database
+     * @return
+     */
+    public Set<User> getAllUsers(){
+        Set<User> usersList = new HashSet<>();
+
+        try (Connection conn = ConnectionFactory.getInstance().getConnection()){
+
+            String sql = baseQuery;
+            PreparedStatement pstmt = conn.prepareStatement(sql);
+            ResultSet rs = pstmt.executeQuery();
+            usersList = mapResultSet(rs).stream().collect(Collectors.toSet());
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return usersList;
+    }
+
+    public boolean deleteUserById(Integer userId){
+        try (Connection conn = ConnectionFactory.getInstance().getConnection()){
+            String sql = "DELETE FROM project_zero.bank_users\n" +
+                         "WHERE id=?;\n";
+            PreparedStatement psmt = conn.prepareStatement(sql,new String[] {"id"});
+            psmt.setInt(1,userId);
+            //get number of affected rows
+            int rowsInserted = psmt.executeUpdate();
+            if (rowsInserted !=0){
+                return true;
+            }
+        } catch (SQLException e) {
+            LogService.logErr(e.toString());
+        }
+        return false;
+    }
+
+    public Set<User> getUsersByRole(Role role){
+        Set<User> usersList = new HashSet<>();
+        try (Connection conn = ConnectionFactory.getInstance().getConnection()){
+            String sql = baseQuery + "WHERE role_id=?;";
+            PreparedStatement psmt = conn.prepareStatement(sql);
+            psmt.setInt(1,role.ordinal()+1);
+            ResultSet rs = psmt.executeQuery();
+            usersList = mapResultSet(rs).stream().collect(Collectors.toSet());
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return usersList;
     }
 
     public Optional<User> save(User newUser){
@@ -119,6 +189,7 @@ public class UserRepository {
         return user;
     }
 
+
     private Set<User> mapResultSet(ResultSet rs) throws SQLException {
 
         Set<User> users = new HashSet<>();
@@ -134,9 +205,6 @@ public class UserRepository {
             LogService.log("Retrieved User: " + temp.toString());
             users.add(temp);
         }
-
         return users;
-
     }
-
 }

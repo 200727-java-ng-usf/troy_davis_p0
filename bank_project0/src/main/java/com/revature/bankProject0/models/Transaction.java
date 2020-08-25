@@ -10,6 +10,7 @@ public class Transaction {
     private Integer primaryAccountOwner;
     private Integer accountNumber;
     private Double accountBalance;
+    private Double endingBalance;
     private Double transactionAmount;
     private TransactionType transactionType;
 
@@ -37,6 +38,14 @@ public class Transaction {
 
     public Transaction(Transaction copy){
         this(copy.id, copy.accountNumber, copy.primaryAccountOwner, copy.accountBalance, copy.transactionAmount, copy.transactionType, copy.dateStamp);
+    }
+
+    public Double getEndingBalance() {
+        return endingBalance;
+    }
+
+    public void setEndingBalance(Double endingBalance) {
+        this.endingBalance = endingBalance;
     }
 
     public Integer getId() {

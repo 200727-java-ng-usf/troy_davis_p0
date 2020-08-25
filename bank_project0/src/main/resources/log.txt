@@ -1,21 +1,23 @@
 
-[LOG] - Mon Aug 24 13:33:15 EDT 2020 - Initializing Log Filer
-[LOG] - Mon Aug 24 13:33:15 EDT 2020 - Initializing Application
-[LOG] - Mon Aug 24 13:33:15 EDT 2020 - Instantiating class com.revature.bankProject0.repositories.UserRepository
-[LOG] - Mon Aug 24 13:33:15 EDT 2020 - Instantiating class com.revature.bankProject0.services.UserService
-[LOG] - Mon Aug 24 13:33:15 EDT 2020 - Instantiating class com.revature.bankProject0.repositories.AccountRepository
-[LOG] - Mon Aug 24 13:33:15 EDT 2020 - Instantiating class com.revature.bankProject0.services.AccountService
-[LOG] - Mon Aug 24 13:33:15 EDT 2020 - Instantiating class com.revature.bankProject0.repositories.TransactionRepository
-[LOG] - Mon Aug 24 13:33:15 EDT 2020 - Instantiating class com.revature.bankProject0.services.TransactionService
-[LOG] - Mon Aug 24 13:33:15 EDT 2020 - Adding /homeTo screen set
-[LOG] - Mon Aug 24 13:33:15 EDT 2020 - Instantiating: com.revature.bankProject0.screens.LoginScreen
-[LOG] - Mon Aug 24 13:33:15 EDT 2020 - Adding /loginTo screen set
-[LOG] - Mon Aug 24 13:33:15 EDT 2020 - Instantiating com.revature.bankProject0.screens.RegisterScreen
-[LOG] - Mon Aug 24 13:33:15 EDT 2020 - Adding /registerTo screen set
-[LOG] - Mon Aug 24 13:33:15 EDT 2020 - Adding /dashTo screen set
-[LOG] - Mon Aug 24 13:33:15 EDT 2020 - Adding /viewAccountTo screen set
-[LOG] - Mon Aug 24 13:33:15 EDT 2020 - Adding /viewTransactionsTo screen set
-[LOG] - Mon Aug 24 13:33:15 EDT 2020 - Adding /createTransactionTo screen set
-[LOG] - Mon Aug 24 13:33:15 EDT 2020 - Adding /createAccountTo screen set
-[LOG] - Mon Aug 24 13:33:15 EDT 2020 - Application initialization complete
-[LOG] - Mon Aug 24 13:33:35 EDT 2020 - user: fgdg attempted to log in
+[LOG] - Mon Aug 24 23:56:21 EDT 2020 - Initializing Log Filer
+[LOG] - Mon Aug 24 23:56:21 EDT 2020 - Initializing Application
+[LOG] - Mon Aug 24 23:56:21 EDT 2020 - Instantiating class com.revature.bankProject0.repositories.UserRepository
+[LOG] - Mon Aug 24 23:56:21 EDT 2020 - Retrieved User: User{id=0, firstName='', lastName='', userName='', passWord='', email='', role=Locked}
+[LOG] - Mon Aug 24 23:56:21 EDT 2020 - Retrieved User: User{id=2, firstName='kaila', lastName='davis', userName='kay123', passWord='password', email='kay123', role=Locked}
+[LOG] - Mon Aug 24 23:56:21 EDT 2020 - Retrieved User: User{id=1, firstName='troy', lastName='davis', userName='tmd1990', passWord='password', email='tmd@g.co', role=Locked}
+[LOG] - Mon Aug 24 23:56:21 EDT 2020 - Instantiating class com.revature.bankProject0.services.UserService
+[LOG] - Mon Aug 24 23:56:21 EDT 2020 - Instantiating class com.revature.bankProject0.repositories.AccountRepository
+[LOG] - Mon Aug 24 23:56:21 EDT 2020 - Instantiating class com.revature.bankProject0.services.AccountService
+[LOG] - Mon Aug 24 23:56:21 EDT 2020 - Instantiating class com.revature.bankProject0.repositories.TransactionRepository
+[LOG] - Mon Aug 24 23:56:21 EDT 2020 - Instantiating class com.revature.bankProject0.services.TransactionService
+[LOG] - Mon Aug 24 23:56:21 EDT 2020 - Adding /homeTo screen set
+[LOG] - Mon Aug 24 23:56:21 EDT 2020 - Instantiating: com.revature.bankProject0.screens.LoginScreen
+[LOG] - Mon Aug 24 23:56:21 EDT 2020 - Adding /loginTo screen set
+[LOG] - Mon Aug 24 23:56:21 EDT 2020 - Instantiating com.revature.bankProject0.screens.RegisterScreen
+[LOG] - Mon Aug 24 23:56:21 EDT 2020 - Adding /registerTo screen set
+[LOG] - Mon Aug 24 23:56:21 EDT 2020 - Adding /dashTo screen set
+[LOG] - Mon Aug 24 23:56:21 EDT 2020 - Adding /viewAccountTo screen set
+[LOG] - Mon Aug 24 23:56:21 EDT 2020 - Adding /viewTransactionsTo screen set
+[LOG] - Mon Aug 24 23:56:21 EDT 2020 - Adding /createTransactionTo screen set
+[LOG] - Mon Aug 24 23:56:21 EDT 2020 - Adding /createAccountTo screen set
+[LOG] - Mon Aug 24 23:56:21 EDT 2020 - Application initialization complete

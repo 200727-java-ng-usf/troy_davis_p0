@@ -22,6 +22,7 @@ public class AppState {
     private boolean appRunning;
     private Set<Account> userAccounts;
     private Set<Transaction> accountTransactions;
+    private Account currentAccount;
 
     public AppState(){
         new LogService();
@@ -32,6 +33,8 @@ public class AppState {
         console =  new BufferedReader(new InputStreamReader(System.in));
         //create instance of user repository
         final UserRepository userRepository = new UserRepository();
+
+
         //create instance of user service
         final UserService userService = new UserService(userRepository);
         //create instance of new router service
@@ -41,13 +44,15 @@ public class AppState {
 
         this.accountTransactions = new HashSet<>();
 
+        this.currentAccount = new Account();
+
         final AccountRepository accountRepository = new AccountRepository();
 
         final AccountService accountService = new AccountService(accountRepository);
 
         final TransactionRepository transactionRepository = new TransactionRepository();
 
-        final TransactionService transactionService = new TransactionService(transactionRepository);
+        final TransactionService transactionService = new TransactionService(transactionRepository, accountRepository);
         //add the screens to the router service
         routerService.addScreen(new HomeScreen())
                     .addScreen(new LoginScreen(userService))
@@ -60,6 +65,19 @@ public class AppState {
         LogService.log("Application initialization complete");
 
 
+    }
+
+    public Account getCurrentAccount(Integer accountId) {
+         for(Account account : getUserAccounts()){
+             if (account.getId().equals(accountId)){
+                 return account;
+             }
+         }
+         return null;
+    }
+
+    public void setCurrentAccount(Account currentAccount) {
+        this.currentAccount = currentAccount;
     }
 
     public BufferedReader getConsole() {

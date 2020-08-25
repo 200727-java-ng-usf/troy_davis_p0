@@ -13,6 +13,7 @@ import java.sql.SQLException;
 import java.util.HashSet;
 import java.util.Optional;
 import java.util.Set;
+import java.util.stream.Collectors;
 
 import static com.revature.bankProject0.AppDriver.app;
 
@@ -23,6 +24,8 @@ public class AccountRepository {
     private String baseAccountPrimaryOwnerQuery = "SELECT * FROM project_zero.account a " +
                                 "JOIN project_zero.bank_users bu " +
                                 "ON a.account_primary_owner_id = bu.id " +
+                                "JOIN bu " +
+                                "ON a.account_secondary_owner_id = bu.id " +
                                 "JOIN project_zero.account_types act " +
                                 "ON a.account_type_id = act.id ";
 
@@ -59,7 +62,7 @@ public class AccountRepository {
         Optional<Account> account = Optional.empty();
 
         try(Connection conn = ConnectionFactory.getInstance().getConnection()){
-            String sql = baseAccountPrimaryOwnerQuery + "WHERE account_secondary_owner_id = ?";
+            String sql = baseAccountPrimaryOwnerQuery + "WHERE a.account_secondary_owner_id = ?";
             PreparedStatement psmt = conn.prepareStatement(sql);
             psmt.setInt(1,userId);
 
@@ -96,6 +99,9 @@ public class AccountRepository {
         return account;
     }
 
+
+
+
     public Optional<Account> save(Account newAccount){
         Optional<Account> optionalAccount = Optional.empty();
 
@@ -128,24 +134,74 @@ public class AccountRepository {
         return optionalAccount;
     }
 
-    public Account updateAccountBalance(Integer accountId, Integer ownerId, Double newBalance){
-        Account updatedAccount = new Account();
+    public boolean updateAccountBalance(Integer accountId, Integer ownerId, Double newBalance){
 
         try(Connection conn = ConnectionFactory.getInstance().getConnection()) {
 
             String sql = "UPDATE project_zero.account\n" +
                     "SET account_balance= ?\n" +
-                    "WHERE id= ? and account_primary_owner_id= ? and account_secondary_owner_id= ? ;";
+                    "WHERE id= ? and account_primary_owner_id= ?;";
             PreparedStatement preparedStatement = conn.prepareStatement(sql, new String[]{"id"});
+            preparedStatement.setDouble(1,newBalance);
+            preparedStatement.setInt(2,accountId);
+            preparedStatement.setInt(3,ownerId);
+
+            int rowsInserted = preparedStatement.executeUpdate();
+            if (rowsInserted !=0){
+                return true;
+            }
 
         } catch (SQLException e) {
             LogService.logErr(e.toString());
         }
-        return updatedAccount;
+        return false;
     }
 
+    public Set<Account> getAccountByIdAndType(Integer accountId, AccountType accountType){
+        Set<Account> accountSet = new HashSet<>();
+        try (Connection conn = ConnectionFactory.getInstance().getConnection()){
+            String sql = baseInsert + "WHERE a.id=? AND a.account_type_id =?;";
+            PreparedStatement psmt = conn.prepareStatement(sql);
+            psmt.setInt(1,accountId);
+            psmt.setInt(2,accountType.ordinal()+1);
+            ResultSet rs = psmt.executeQuery();
+            accountSet = mapResultSet(rs).stream().collect(Collectors.toSet());
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return accountSet;
+    }
+    public Set<Account> getAccountByUserIdAndType(Integer userId, AccountType accountType){
+        Set<Account> accountSet = new HashSet<>();
+        try (Connection conn = ConnectionFactory.getInstance().getConnection()){
+            String sql = baseInsert + "WHERE bu.id=? AND a.account_type_id =?;";
+            PreparedStatement psmt = conn.prepareStatement(sql);
+            psmt.setInt(1,userId);
+            psmt.setInt(2,accountType.ordinal()+1);
+            ResultSet rs = psmt.executeQuery();
+            accountSet = mapResultSet(rs).stream().collect(Collectors.toSet());
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return accountSet;
+    }
 
-
+    public boolean deleteBankAccountById(Integer accountId){
+        try (Connection conn = ConnectionFactory.getInstance().getConnection()){
+            String sql = "DELETE FROM project_zero.account\n" +
+                         "WHERE id=?;";
+            PreparedStatement psmt = conn.prepareStatement(sql,new String[] {"id"});
+            psmt.setInt(1,accountId);
+            //get number of affected rows
+            int rowsInserted = psmt.executeUpdate();
+            if (rowsInserted !=0){
+                return true;
+            }
+        } catch (SQLException e) {
+            LogService.logErr(e.toString());
+        }
+        return false;
+    }
 
 
 

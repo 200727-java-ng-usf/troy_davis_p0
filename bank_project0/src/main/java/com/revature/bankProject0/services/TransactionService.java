@@ -4,6 +4,7 @@ import com.revature.bankProject0.exceptions.InvalidRequestException;
 import com.revature.bankProject0.models.Account;
 import com.revature.bankProject0.models.Transaction;
 import com.revature.bankProject0.models.User;
+import com.revature.bankProject0.repositories.AccountRepository;
 import com.revature.bankProject0.repositories.TransactionRepository;
 
 import java.util.Set;
@@ -12,10 +13,11 @@ import static com.revature.bankProject0.AppDriver.app;
 
 public class TransactionService {
     private TransactionRepository transactionRepository;
-
-    public TransactionService(TransactionRepository repo){
+    private AccountRepository accountRepository;
+    public TransactionService(TransactionRepository repo, AccountRepository accountRepository){
         LogService.log("Instantiating " + this.getClass().toString());
-        transactionRepository = repo;
+        this.transactionRepository = repo;
+        this.accountRepository = accountRepository;
     }
 
     public void createDepositTransaction(Transaction transaction){
@@ -24,9 +26,19 @@ public class TransactionService {
             throw new InvalidRequestException("Invalid user fields provided during Deposit Transaction creation");
         }
         transactionRepository.createNewTransaction(transaction);
+        accountRepository.updateAccountBalance(transaction.getAccountNumber(),
+                                               transaction.getPrimaryAccountOwner(),
+                                               transaction.getEndingBalance());
     }
-    public void createWithdrawalTransaction(User user, Account account, Double transactionAmount){
-
+    public void createWithdrawalTransaction(Transaction transaction){
+        if (!isTransactionValid(transaction)){
+            LogService.log("Invalid transaction Details provided!");
+            throw new InvalidRequestException("Invalid user fields provided during Deposit Transaction creation");
+        }
+        transactionRepository.createNewTransaction(transaction);
+        accountRepository.updateAccountBalance(transaction.getAccountNumber(),
+                transaction.getPrimaryAccountOwner(),
+                transaction.getEndingBalance());
     }
 
     public void getTransactionsForAccountAndUser(User user, Set<Account> account){
@@ -42,12 +54,8 @@ public class TransactionService {
             return false;
         }
         if (transaction.getAccountBalance() == null || transaction.getTransactionAmount() == null ||
-            transaction.getAccountNumber() == null || transaction.getDateStamp() == null ||
+            transaction.getAccountNumber() == null ||
             transaction.getPrimaryAccountOwner() == null || transaction.getTransactionType() == null){
-            return false;
-        }
-        if (transaction.getTransactionAmount() > transaction.getAccountBalance()){
-            System.out.println("Sorry no Over-Drafting!");
             return false;
         }
 
