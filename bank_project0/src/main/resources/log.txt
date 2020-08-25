@@ -1,23 +1,73 @@
 
-[LOG] - Mon Aug 24 23:56:21 EDT 2020 - Initializing Log Filer
-[LOG] - Mon Aug 24 23:56:21 EDT 2020 - Initializing Application
-[LOG] - Mon Aug 24 23:56:21 EDT 2020 - Instantiating class com.revature.bankProject0.repositories.UserRepository
-[LOG] - Mon Aug 24 23:56:21 EDT 2020 - Retrieved User: User{id=0, firstName='', lastName='', userName='', passWord='', email='', role=Locked}
-[LOG] - Mon Aug 24 23:56:21 EDT 2020 - Retrieved User: User{id=2, firstName='kaila', lastName='davis', userName='kay123', passWord='password', email='kay123', role=Locked}
-[LOG] - Mon Aug 24 23:56:21 EDT 2020 - Retrieved User: User{id=1, firstName='troy', lastName='davis', userName='tmd1990', passWord='password', email='tmd@g.co', role=Locked}
-[LOG] - Mon Aug 24 23:56:21 EDT 2020 - Instantiating class com.revature.bankProject0.services.UserService
-[LOG] - Mon Aug 24 23:56:21 EDT 2020 - Instantiating class com.revature.bankProject0.repositories.AccountRepository
-[LOG] - Mon Aug 24 23:56:21 EDT 2020 - Instantiating class com.revature.bankProject0.services.AccountService
-[LOG] - Mon Aug 24 23:56:21 EDT 2020 - Instantiating class com.revature.bankProject0.repositories.TransactionRepository
-[LOG] - Mon Aug 24 23:56:21 EDT 2020 - Instantiating class com.revature.bankProject0.services.TransactionService
-[LOG] - Mon Aug 24 23:56:21 EDT 2020 - Adding /homeTo screen set
-[LOG] - Mon Aug 24 23:56:21 EDT 2020 - Instantiating: com.revature.bankProject0.screens.LoginScreen
-[LOG] - Mon Aug 24 23:56:21 EDT 2020 - Adding /loginTo screen set
-[LOG] - Mon Aug 24 23:56:21 EDT 2020 - Instantiating com.revature.bankProject0.screens.RegisterScreen
-[LOG] - Mon Aug 24 23:56:21 EDT 2020 - Adding /registerTo screen set
-[LOG] - Mon Aug 24 23:56:21 EDT 2020 - Adding /dashTo screen set
-[LOG] - Mon Aug 24 23:56:21 EDT 2020 - Adding /viewAccountTo screen set
-[LOG] - Mon Aug 24 23:56:21 EDT 2020 - Adding /viewTransactionsTo screen set
-[LOG] - Mon Aug 24 23:56:21 EDT 2020 - Adding /createTransactionTo screen set
-[LOG] - Mon Aug 24 23:56:21 EDT 2020 - Adding /createAccountTo screen set
-[LOG] - Mon Aug 24 23:56:21 EDT 2020 - Application initialization complete
+[LOG] - Tue Aug 25 11:34:33 EDT 2020 - Initializing Log Filer
+[LOG] - Tue Aug 25 11:34:34 EDT 2020 - Initializing Application
+[LOG] - Tue Aug 25 11:34:34 EDT 2020 - Instantiating class com.revature.bankProject0.repositories.UserRepository
+[LOG] - Tue Aug 25 11:34:34 EDT 2020 - Instantiating class com.revature.bankProject0.services.UserService
+[LOG] - Tue Aug 25 11:34:34 EDT 2020 - Instantiating class com.revature.bankProject0.repositories.AccountRepository
+[LOG] - Tue Aug 25 11:34:34 EDT 2020 - Instantiating class com.revature.bankProject0.services.AccountService
+[LOG] - Tue Aug 25 11:34:34 EDT 2020 - Instantiating class com.revature.bankProject0.repositories.TransactionRepository
+[LOG] - Tue Aug 25 11:34:34 EDT 2020 - Instantiating class com.revature.bankProject0.services.TransactionService
+[LOG] - Tue Aug 25 11:34:34 EDT 2020 - Adding /homeTo screen set
+[LOG] - Tue Aug 25 11:34:34 EDT 2020 - Instantiating: com.revature.bankProject0.screens.LoginScreen
+[LOG] - Tue Aug 25 11:34:34 EDT 2020 - Adding /loginTo screen set
+[LOG] - Tue Aug 25 11:34:34 EDT 2020 - Instantiating com.revature.bankProject0.screens.RegisterScreen
+[LOG] - Tue Aug 25 11:34:34 EDT 2020 - Adding /registerTo screen set
+[LOG] - Tue Aug 25 11:34:34 EDT 2020 - Adding /dashTo screen set
+[LOG] - Tue Aug 25 11:34:34 EDT 2020 - Adding /viewAccountTo screen set
+[LOG] - Tue Aug 25 11:34:34 EDT 2020 - Adding /viewTransactionsTo screen set
+[LOG] - Tue Aug 25 11:34:34 EDT 2020 - Adding /createTransactionTo screen set
+[LOG] - Tue Aug 25 11:34:34 EDT 2020 - Adding /createAccountTo screen set
+[LOG] - Tue Aug 25 11:34:34 EDT 2020 - Application initialization complete
+[LOG] - Tue Aug 25 11:34:41 EDT 2020 - user: tmd1990 attempted to log in
+[LOG] - Tue Aug 25 11:34:42 EDT 2020 - Retrieved User: User{id=1, firstName='troy', lastName='davis', userName='tmd1990', passWord='password', email='tmd@g.co', role=Locked}
+[LOG] - Tue Aug 25 11:34:42 EDT 2020 - Rendering troy's Dashboard...
+[LOG] - Tue Aug 25 11:34:43 EDT 2020 - Rendering troy's Account...
+[LOG] - Tue Aug 25 11:34:44 EDT 2020 - Retrieved Account: 
+Account: 
+id: 3, accountBalance: $70,500.00, accountType: CHECKING
+[LOG] - Tue Aug 25 11:34:44 EDT 2020 - Retrieved Account: 
+Account: 
+id: 10, accountBalance: $0.00, accountType: CHECKING
+[LOG] - Tue Aug 25 11:34:44 EDT 2020 - Retrieved Account: 
+Account: 
+id: 6, accountBalance: $1,700.00, accountType: CHECKING
+[LOG] - Tue Aug 25 11:34:44 EDT 2020 - Retrieved Account: 
+Account: 
+id: 7, accountBalance: $0.00, accountType: CHECKING
+[LOG] - Tue Aug 25 11:34:44 EDT 2020 - Retrieved Account: 
+Account: 
+id: 8, accountBalance: $300.00, accountType: SAVINGS
+[LOG] - Tue Aug 25 11:34:44 EDT 2020 - Retrieved Account: 
+Account: 
+id: 9, accountBalance: $0.00, accountType: SAVINGS
+[LOG] - Tue Aug 25 11:34:44 EDT 2020 - Retrieved Account: 
+Account: 
+id: 5, accountBalance: $554,555.00, accountType: SAVINGS
+[LOG] - Tue Aug 25 11:34:44 EDT 2020 - Retrieved Account: 
+Account: 
+id: 4, accountBalance: $5,000.00, accountType: SAVINGS
+[LOG] - Tue Aug 25 11:35:17 EDT 2020 - Rendering troy's Dashboard...
+[LOG] - Tue Aug 25 11:35:25 EDT 2020 - Rendering troy's Past Transactions
+[LOG] - Tue Aug 25 11:35:26 EDT 2020 - Retrieved Transaction: 
+Transaction: id=3, dateStamp=2020-08-24 22:10:54.640027, accountNumber=3, transactionAmount=400.0, transactionType=WITHDRAWAL
+
+[LOG] - Tue Aug 25 11:35:26 EDT 2020 - Retrieved Transaction: 
+Transaction: id=4, dateStamp=2020-08-24 22:21:12.671853, accountNumber=3, transactionAmount=5000.0, transactionType=WITHDRAWAL
+
+[LOG] - Tue Aug 25 11:35:26 EDT 2020 - Retrieved Transaction: 
+Transaction: id=7, dateStamp=2020-08-24 22:41:58.063097, accountNumber=3, transactionAmount=600.0, transactionType=WITHDRAWAL
+
+[LOG] - Tue Aug 25 11:35:26 EDT 2020 - Retrieved Transaction: 
+Transaction: id=8, dateStamp=2020-08-24 23:15:24.616313, accountNumber=3, transactionAmount=500.0, transactionType=WITHDRAWAL
+
+[LOG] - Tue Aug 25 11:35:26 EDT 2020 - Retrieved Transaction: 
+Transaction: id=9, dateStamp=2020-08-25 11:23:29.802547, accountNumber=3, transactionAmount=50000.0, transactionType=WITHDRAWAL
+
+[LOG] - Tue Aug 25 11:35:27 EDT 2020 - Retrieved Transaction: 
+Transaction: id=6, dateStamp=2020-08-24 22:40:25.501927, accountNumber=8, transactionAmount=300.0, transactionType=WITHDRAWAL
+
+[LOG] - Tue Aug 25 11:35:27 EDT 2020 - Retrieved Transaction: 
+Transaction: id=5, dateStamp=2020-08-24 22:28:58.674745, accountNumber=5, transactionAmount=1000.0, transactionType=DEPOSIT
+
+[LOG] - Tue Aug 25 11:35:45 EDT 2020 - Rendering troy's Dashboard...
+[LOG] - Tue Aug 25 11:35:48 EDT 2020 - tmd1990 signing out...

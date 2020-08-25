@@ -1,6 +1,7 @@
 package com.revature.bankProject0.models;
 
 import javax.swing.*;
+import java.text.NumberFormat;
 import java.util.Objects;
 
 public class Account {
@@ -93,12 +94,14 @@ public class Account {
 
     @Override
     public String toString() {
-        return "Account: " +
-                "id=" + id +
-                ", accountBalance=" + "$"+accountBalance.doubleValue() +
-                ", accountType=" + accountType +
+        NumberFormat formatter = NumberFormat.getCurrencyInstance();
+        return "\n"+"Account: " + "\n"+
+                "id: " + id +
+                ", " + "accountBalance: " +
+                formatter.format(accountBalance.doubleValue()) +
+                ", accountType: " + accountType
                 //", primaryOwner=" + primaryOwner +
                 //", secondaryOwner=" + secondaryOwner +
-                "\n";
+                ;
     }
 }

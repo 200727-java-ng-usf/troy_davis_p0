@@ -24,8 +24,6 @@ public class AccountRepository {
     private String baseAccountPrimaryOwnerQuery = "SELECT * FROM project_zero.account a " +
                                 "JOIN project_zero.bank_users bu " +
                                 "ON a.account_primary_owner_id = bu.id " +
-                                "JOIN bu " +
-                                "ON a.account_secondary_owner_id = bu.id " +
                                 "JOIN project_zero.account_types act " +
                                 "ON a.account_type_id = act.id ";
 
