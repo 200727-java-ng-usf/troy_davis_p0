@@ -61,6 +61,77 @@ public class UserService {
         app.setCurrentUser(newUser);
     }
 
+
+    /**
+     * Public void method to validate based on provided credentials
+     *      - checks for null and empty fields from username and password
+     *      - uses the userRepository to findUsersByCredentials(username,password)
+     *      - if authenticated, sets the current user to the authorized user
+     *      - throws AuthenticationException if not
+     * @param username
+     * @param password
+     * @return
+     */
+    public void authenticate(String username, String password){
+        if (username == null || username.trim().equals("") || password == null || password.trim().equals("")){
+            LogService.logErr("Invalid credential values provided");
+            throw new InvalidRequestException("Invalid credential values provided");
+        }
+        User authUser = userRepository.findUsersByCredentials(username,password)
+                                    .orElseThrow(AuthenticationException::new);
+
+        app.setCurrentUser(authUser);
+    }
+
+    public Set<User> getAllUsers(){
+        return userRepository.getAllUsers();
+    }
+    public Set<User> getUsersByRole(Role role){
+        return userRepository.getUsersByRole(role);
+    }
+
+    public Optional<User> getUserById(int id){
+        return userRepository.findUserByUserId(id);
+    }
+
+
+    public Optional<User> getUsersByUsername(String username){
+        if (username == null){
+            return Optional.empty();
+        }
+        return userRepository.findUserByUserName(username);
+    }
+    public boolean deleteUserById(int id){
+        return userRepository.deleteUserById(id);
+    }
+
+
+
+
+    public void update (User updatedUser){
+        if (!isUserValid(updatedUser)){
+            LogService.log("Invalid user fields provided during registration");
+            throw new InvalidRequestException("Invalid user fields provided during registration");
+        }
+
+        Optional<User> existingUser = userRepository.findUserByUserName(updatedUser.getUserName());
+        if (existingUser.isPresent()){
+            System.out.println("Provided username is already in use!");
+            app.getRouterService().route("/register");
+        }
+
+        Optional<User> existingUserEmail = userRepository.findUserByEmail(updatedUser.getEmail());
+        if (existingUserEmail.isPresent()) {
+            // TODO implement a custom ResourcePersistenceException
+            throw new RuntimeException("Provided username is already in use!");
+        }
+
+        updatedUser.setRole(Role.BASIC_USER);
+        userRepository.update(updatedUser);
+        app.setCurrentUser(updatedUser);
+    }
+
+
     /**
      * public boolean method to tell if a given user is valid based on given fields
      *      - checks first, last, username, password, email for null
@@ -90,69 +161,5 @@ public class UserService {
         }
         return true;
     }
-
-    /**
-     * Public void method to validate based on provided credentials
-     *      - checks for null and empty fields from username and password
-     *      - uses the userRepository to findUsersByCredentials(username,password)
-     *      - if authenticated, sets the current user to the authorized user
-     *      - throws AuthenticationException if not
-     * @param username
-     * @param password
-     * @return
-     */
-    public void authenticate(String username, String password){
-        if (username == null || username.trim().equals("") || password == null || password.trim().equals("")){
-            LogService.logErr("Invalid credential values provided");
-            throw new InvalidRequestException("Invalid credential values provided");
-        }
-        User authUser = userRepository.findUsersByCredentials(username,password)
-                                    .orElseThrow(AuthenticationException::new);
-
-        app.setCurrentUser(authUser);
-    }
-
-    public Set<User> getAllUsers(){
-        return userRepository.getAllUsers();
-    }
-    public Set<User> getUsersByRole(Role role){
-        return userRepository.getUsersByRole(role);
-    }
-    public Optional<User> getUserById(int id){
-        return userRepository.findUserByUserId(id);
-    }
-    public Optional<User> getUsersByUsername(String username){
-        if (username == null){
-            return null;
-        }
-        return userRepository.findUserByUserName(username);
-    }
-    public boolean deleteUserById(int id){
-        return userRepository.deleteUserById(id);
-    }
-
-    public void update (User updatedUser){
-        if (!isUserValid(updatedUser)){
-            LogService.log("Invalid user fields provided during registration");
-            throw new InvalidRequestException("Invalid user fields provided during registration");
-        }
-
-        Optional<User> existingUser = userRepository.findUserByUserName(updatedUser.getUserName());
-        if (existingUser.isPresent()){
-            System.out.println("Provided username is already in use!");
-            app.getRouterService().route("/register");
-        }
-
-        Optional<User> existingUserEmail = userRepository.findUserByEmail(updatedUser.getEmail());
-        if (existingUserEmail.isPresent()) {
-            // TODO implement a custom ResourcePersistenceException
-            throw new RuntimeException("Provided username is already in use!");
-        }
-
-        updatedUser.setRole(Role.BASIC_USER);
-        userRepository.update(updatedUser);
-        app.setCurrentUser(updatedUser);
-    }
-
 
 }

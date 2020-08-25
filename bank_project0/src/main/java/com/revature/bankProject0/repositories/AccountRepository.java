@@ -58,26 +58,6 @@ public class AccountRepository {
         return account;
     }
 
-    public Optional<Account> findAccountByUserSecondaryId(Integer userId){
-        Optional<Account> account = Optional.empty();
-
-        try(Connection conn = ConnectionFactory.getInstance().getConnection()){
-            String sql = baseAccountPrimaryOwnerQuery + "WHERE a.account_secondary_owner_id = ?";
-            PreparedStatement psmt = conn.prepareStatement(sql);
-            psmt.setInt(1,userId);
-
-            ResultSet rs = psmt.executeQuery();
-
-            Account account1 = new Account();
-
-            account = mapResultSet(rs).stream().findFirst();
-
-        }catch (SQLException e){
-            LogService.logErr(e.toString());
-        }
-
-        return account;
-    }
 
     public Optional<Account> findAccountByAccountId(Integer accountId){
         Optional<Account> account = Optional.empty();
@@ -109,14 +89,13 @@ public class AccountRepository {
 
             String sql = baseInsert +
                     "(account_balance, account_primary_owner_id, account_secondary_owner_id, account_type_id) " +
-                    "VALUES(?, ?, ?, ?); ";
+                    "VALUES(?, ?, 0, ?); ";
 
             PreparedStatement preparedStatement = conn.prepareStatement(sql, new String[] {"id"});
 
             preparedStatement.setDouble(1,newAccount.getAccountBalance());
             preparedStatement.setInt(2,newAccount.getPrimaryOwner());
-            preparedStatement.setInt(3,newAccount.getSecondaryOwner());
-            preparedStatement.setInt(4,newAccount.getAccountType().ordinal() + 1);
+            preparedStatement.setInt(3,newAccount.getAccountType().ordinal() + 1);
 
             int rowsInserted = preparedStatement.executeUpdate();
             if (rowsInserted != 0){
@@ -132,6 +111,35 @@ public class AccountRepository {
 
 
         return optionalAccount;
+    }
+
+    public boolean updateAccount(Account newAccount){
+
+        try(Connection conn = ConnectionFactory.getInstance().getConnection()) {
+
+            String sql = "UPDATE project_zero.account\n" +
+                         "SET account_balance=?, account_primary_owner_id=?, account_secondary_owner_id=?, account_type_id=?\n" +
+                         "WHERE id=?;\n";
+            PreparedStatement preparedStatement = conn.prepareStatement(sql, new String[]{"id"});
+            preparedStatement.setDouble(1,newAccount.getAccountBalance());
+
+            preparedStatement.setInt(2,newAccount.getPrimaryOwner());
+
+            preparedStatement.setInt(3,newAccount.getSecondaryOwner());
+
+            preparedStatement.setInt(4,newAccount.getAccountType().ordinal()+1);
+
+            preparedStatement.setInt(5,newAccount.getId());
+
+            int rowsInserted = preparedStatement.executeUpdate();
+            if (rowsInserted !=0){
+                return true;
+            }
+
+        } catch (SQLException e) {
+            LogService.logErr(e.toString());
+        }
+        return false;
     }
 
     public boolean updateAccountBalance(Integer accountId, Integer ownerId, Double newBalance){

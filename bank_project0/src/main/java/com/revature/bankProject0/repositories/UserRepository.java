@@ -186,7 +186,7 @@ public class UserRepository {
         } catch (SQLException e) {
             LogService.logErr(e.toString());
         }
-        return user;
+        return Optional.of(newUser);
     }
 
     public Optional<User> update(User newUser){
@@ -219,7 +219,7 @@ public class UserRepository {
         } catch (SQLException e) {
             LogService.logErr(e.toString());
         }
-        return updatedUser;
+        return Optional.of(newUser);
     }
 
     private Set<User> mapResultSet(ResultSet rs) throws SQLException {

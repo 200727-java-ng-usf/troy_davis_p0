@@ -19,15 +19,6 @@ public class AccountService {
         accountRepository = repo;
     }
 
-    public void addSecondaryAccountOwner(){
-
-    }
-
-//    public getAccountBalanceByAccount
-
-    public void deleteAccount(){
-
-    }
 
     public void register(Account newAccount){
         if (!isAccountValid(newAccount)){
@@ -35,11 +26,6 @@ public class AccountService {
             throw new InvalidRequestException("Invalid user fields provided during account creation");
         }
 
-//        Optional<Account> existingAccount = accountRepository.findAccountByAccountId(newAccount.getId());
-//        if (existingAccount.isPresent()){
-//            System.out.println("You may only have one of each account");
-//            app.getRouterService().route("/createAccount");
-//        }
         accountRepository.save(newAccount);
         app.addToUserAccounts(newAccount);
     }
@@ -55,8 +41,7 @@ public class AccountService {
         if(account == null || newBalance == null || newBalance < 0.0d){
             return false;
         }
-
-        return true;
+        return accountRepository.updateAccountBalance(account.getId(),account.getPrimaryOwner(),newBalance);
     }
 
     public boolean isAccountValid(Account accountInQuestion){

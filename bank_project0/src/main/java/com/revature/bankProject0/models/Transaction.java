@@ -123,13 +123,14 @@ public class Transaction {
                 Objects.equals(getPrimaryAccountOwner(), that.getPrimaryAccountOwner()) &&
                 Objects.equals(getAccountNumber(), that.getAccountNumber()) &&
                 Objects.equals(getAccountBalance(), that.getAccountBalance()) &&
+                Objects.equals(getEndingBalance(), that.getEndingBalance()) &&
                 Objects.equals(getTransactionAmount(), that.getTransactionAmount()) &&
                 getTransactionType() == that.getTransactionType();
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(getId(), getDate(), getDateStamp(), getPrimaryAccountOwner(), getAccountNumber(), getAccountBalance(), getTransactionAmount(), getTransactionType());
+        return Objects.hash(getId(), getDate(), getDateStamp(), getPrimaryAccountOwner(), getAccountNumber(), getAccountBalance(), getEndingBalance(), getTransactionAmount(), getTransactionType());
     }
 
     @Override

@@ -89,7 +89,6 @@ public class CreateTransactionScreen extends Screen{
 
 
 
-
         } catch (IOException | InputMismatchException | NullPointerException e) {
             LogService.logErr(e.toString());
             System.out.println("Something went wrong, please try again!");
