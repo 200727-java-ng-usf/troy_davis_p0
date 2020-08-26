@@ -1,5 +1,6 @@
 package com.revature.bankProject0Tests.services;
 
+import com.revature.bankProject0.exceptions.AuthenticationException;
 import com.revature.bankProject0.exceptions.InvalidRequestException;
 import com.revature.bankProject0.models.Account;
 import com.revature.bankProject0.models.AccountType;
@@ -51,7 +52,10 @@ public class AccountServiceTests {
         sut.register(new Account());
     }
 
-
+    @Test(expected = AuthenticationException.class)
+    public void getAccountTest(){
+        sut.getAccountsForUser(new User());
+    }
 
 
 

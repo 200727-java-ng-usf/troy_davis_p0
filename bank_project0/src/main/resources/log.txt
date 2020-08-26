@@ -1,49 +1,29 @@
 
-[LOG] - Wed Aug 26 09:47:46 EDT 2020 - Initializing Log Filer
-[LOG] - Wed Aug 26 09:47:46 EDT 2020 - Initializing Application
-[LOG] - Wed Aug 26 09:47:46 EDT 2020 - Instantiating class com.revature.bankProject0.repositories.UserRepository
-[LOG] - Wed Aug 26 09:47:46 EDT 2020 - Instantiating class com.revature.bankProject0.services.UserService
-[LOG] - Wed Aug 26 09:47:46 EDT 2020 - Instantiating class com.revature.bankProject0.repositories.AccountRepository
-[LOG] - Wed Aug 26 09:47:46 EDT 2020 - Instantiating class com.revature.bankProject0.services.AccountService
-[LOG] - Wed Aug 26 09:47:46 EDT 2020 - Instantiating class com.revature.bankProject0.services.TransactionService
-[LOG] - Wed Aug 26 09:47:46 EDT 2020 - Adding /homeTo screen set
-[LOG] - Wed Aug 26 09:47:46 EDT 2020 - Instantiating: com.revature.bankProject0.screens.LoginScreen
-[LOG] - Wed Aug 26 09:47:46 EDT 2020 - Adding /loginTo screen set
-[LOG] - Wed Aug 26 09:47:46 EDT 2020 - Instantiating com.revature.bankProject0.screens.RegisterScreen
-[LOG] - Wed Aug 26 09:47:46 EDT 2020 - Adding /registerTo screen set
-[LOG] - Wed Aug 26 09:47:46 EDT 2020 - Adding /dashTo screen set
-[LOG] - Wed Aug 26 09:47:46 EDT 2020 - Adding /viewAccountTo screen set
-[LOG] - Wed Aug 26 09:47:46 EDT 2020 - Adding /createTransactionTo screen set
-[LOG] - Wed Aug 26 09:47:46 EDT 2020 - Adding /createAccountTo screen set
-[LOG] - Wed Aug 26 09:47:46 EDT 2020 - Application initialization complete
-[LOG] - Wed Aug 26 09:47:57 EDT 2020 - new user attempted to sign up: 
-cgcmjhgc,fchgc,ydjkytdikyt,yukfv,djurdk
-[LOG] - Wed Aug 26 09:47:59 EDT 2020 - Rendering cgcmjhgc's Dashboard...
-[LOG] - Wed Aug 26 09:48:03 EDT 2020 - Rendering cgcmjhgc's Create Account Screen...
-[LOG] - Wed Aug 26 09:48:06 EDT 2020 - Rendering cgcmjhgc's Dashboard...
-[LOG] - Wed Aug 26 09:48:12 EDT 2020 - Rendering cgcmjhgc's Account...
-[LOG] - Wed Aug 26 09:48:12 EDT 2020 - Retrieved Account: 
-Account: 
-, accountBalance: $0.00, accountType: CHECKING
-[LOG] - Wed Aug 26 09:48:15 EDT 2020 - Rendering cgcmjhgc's Dashboard...
-[LOG] - Wed Aug 26 09:48:20 EDT 2020 - Rendering cgcmjhgc's Create Transaction Screen...
-[LOG] - Wed Aug 26 09:48:23 EDT 2020 - Retrieved Account: 
-Account: 
-, accountBalance: $0.00, accountType: CHECKING
-[LOG] - Wed Aug 26 09:48:26 EDT 2020 - Rendering cgcmjhgc's Dashboard...
-[LOG] - Wed Aug 26 09:48:30 EDT 2020 - Rendering cgcmjhgc's Account...
-[LOG] - Wed Aug 26 09:48:31 EDT 2020 - Retrieved Account: 
-Account: 
-, accountBalance: $500.00, accountType: CHECKING
-[LOG] - Wed Aug 26 09:48:34 EDT 2020 - Rendering cgcmjhgc's Dashboard...
-[LOG] - Wed Aug 26 09:48:39 EDT 2020 - Rendering cgcmjhgc's Create Transaction Screen...
-[LOG] - Wed Aug 26 09:48:42 EDT 2020 - Retrieved Account: 
-Account: 
-, accountBalance: $500.00, accountType: CHECKING
-[LOG] - Wed Aug 26 09:48:46 EDT 2020 - Rendering cgcmjhgc's Dashboard...
-[LOG] - Wed Aug 26 09:48:48 EDT 2020 - Rendering cgcmjhgc's Account...
-[LOG] - Wed Aug 26 09:48:49 EDT 2020 - Retrieved Account: 
-Account: 
-, accountBalance: $200.00, accountType: CHECKING
-[LOG] - Wed Aug 26 09:48:52 EDT 2020 - Rendering cgcmjhgc's Dashboard...
-[LOG] - Wed Aug 26 09:48:58 EDT 2020 - ydjkytdikyt signing out...
+[LOG] - Wed Aug 26 10:12:50 EDT 2020 - Initializing Log Filer
+[LOG] - Wed Aug 26 10:12:50 EDT 2020 - Initializing Application
+[LOG] - Wed Aug 26 10:12:50 EDT 2020 - Instantiating class com.revature.bankProject0.repositories.UserRepository
+[LOG] - Wed Aug 26 10:12:50 EDT 2020 - Instantiating class com.revature.bankProject0.services.UserService
+[LOG] - Wed Aug 26 10:12:50 EDT 2020 - Instantiating class com.revature.bankProject0.repositories.AccountRepository
+[LOG] - Wed Aug 26 10:12:50 EDT 2020 - Instantiating class com.revature.bankProject0.services.AccountService
+[LOG] - Wed Aug 26 10:12:50 EDT 2020 - Instantiating class com.revature.bankProject0.services.TransactionService
+[LOG] - Wed Aug 26 10:12:50 EDT 2020 - Adding /homeTo screen set
+[LOG] - Wed Aug 26 10:12:50 EDT 2020 - Instantiating: com.revature.bankProject0.screens.LoginScreen
+[LOG] - Wed Aug 26 10:12:50 EDT 2020 - Adding /loginTo screen set
+[LOG] - Wed Aug 26 10:12:50 EDT 2020 - Instantiating com.revature.bankProject0.screens.RegisterScreen
+[LOG] - Wed Aug 26 10:12:50 EDT 2020 - Adding /registerTo screen set
+[LOG] - Wed Aug 26 10:12:50 EDT 2020 - Adding /dashTo screen set
+[LOG] - Wed Aug 26 10:12:50 EDT 2020 - Adding /viewAccountTo screen set
+[LOG] - Wed Aug 26 10:12:50 EDT 2020 - Adding /createTransactionTo screen set
+[LOG] - Wed Aug 26 10:12:50 EDT 2020 - Adding /createAccountTo screen set
+[LOG] - Wed Aug 26 10:12:50 EDT 2020 - Application initialization complete
+[LOG] - Wed Aug 26 10:12:50 EDT 2020 - Instantiating class com.revature.bankProject0.services.TransactionService
+[LOG] - Wed Aug 26 10:12:50 EDT 2020 - Invalid transaction Details provided!
+[LOG] - Wed Aug 26 10:12:50 EDT 2020 - Invalid user fields provided during Deposit Transaction creation
+[LOG] - Wed Aug 26 10:12:50 EDT 2020 - Instantiating class com.revature.bankProject0.services.TransactionService
+[LOG] - Wed Aug 26 10:12:50 EDT 2020 - Invalid transaction Details provided!
+[LOG] - Wed Aug 26 10:12:50 EDT 2020 - Invalid user fields provided during Deposit Transaction creation
+[LOG] - Wed Aug 26 10:12:50 EDT 2020 - Instantiating class com.revature.bankProject0.services.UserService
+[LOG] - Wed Aug 26 10:12:50 EDT 2020 - Instantiating class com.revature.bankProject0.services.UserService
+[LOG] - Wed Aug 26 10:12:50 EDT 2020 - Invalid user fields provided during registration
+[LOG] - Wed Aug 26 10:12:50 EDT 2020 - Invalid user fields provided during registration
+[LOG] - Wed Aug 26 10:12:50 EDT 2020 - Instantiating class com.revature.bankProject0.services.UserService

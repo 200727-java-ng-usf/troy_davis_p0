@@ -44,11 +44,13 @@ public class UserServiceTests {
 
     @Test(expected = AuthenticationException.class)
     public void authenticateWithInvalidCredentials() {
+        //try to log in with dad credentials
         sut.authenticate("garbage", "user");
     }
 
     @Test
     public void isUserValidTestwithBadCredentials(){
+        //test validation with an empty user
         User newUser = new User();
         Assert.assertFalse(sut.isUserValid(newUser));
     }
