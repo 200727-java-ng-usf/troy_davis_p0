@@ -18,11 +18,5 @@ public class AppDriver {
         while (app.isAppRunning()){
             app.getRouterService().route("/home");
         }
-
-
-
-
-
-
     }
 }

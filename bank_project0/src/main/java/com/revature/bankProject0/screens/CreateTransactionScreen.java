@@ -46,14 +46,9 @@ public class CreateTransactionScreen extends Screen{
             transaction.setPrimaryAccountOwner(app.getCurrentUser().getId());
             System.out.println("Here are your account details:");
             accountService.getAccountsForUser(app.getCurrentUser());
-            System.out.println(app.getUserAccounts());
-            System.out.println();
-            System.out.println("Enter the account number that you would like to use: ");
-            System.out.print("account number: ");
-            transaction.setAccountNumber(Integer.valueOf(app.getConsole().readLine()));
-            transaction.setAccountBalance(app.getCurrentAccount(transaction
-                                                .getAccountNumber())
-                                                .getAccountBalance());
+            System.out.println(app.getCurrentAccount());
+            transaction.setAccountNumber(app.getCurrentAccount().getId());
+            transaction.setAccountBalance(app.getCurrentAccount().getAccountBalance());
             System.out.println("Enter the amount: ");
             System.out.print("$");
             transaction.setTransactionAmount(Double.valueOf(app.getConsole().readLine()));
@@ -86,8 +81,8 @@ public class CreateTransactionScreen extends Screen{
             app.getRouterService().route("/dash");
         }catch (Exception e){
             LogService.logErr(e.toString());
-            //kill the application
-            app.setAppRunning(false);
+            System.out.println("Something went wrong, please try again!");
+            app.getRouterService().route("/dash");
         }
 
 

@@ -51,34 +51,8 @@ public class AccountServiceTests {
         sut.register(new Account());
     }
 
-    @Test
-    public void getAccountForUserTest(){
-        Set<Account> expectedAccount = new HashSet<>();
-        expectedAccount.add(new Account(1,100.0d, AccountType.SAVINGS,1));
-        Mockito.when(mockAccountRepo.findAccountByUserId(1))
-                .thenReturn(expectedAccount);
-        User newUser = new User(1,"troy","davis","td123","password","t@g.c", Role.ADMIN);
 
-        //act
-        sut.getAccountsForUser(newUser);
 
-        Assert.assertEquals(expectedAccount,app.getUserAccounts());
 
-    }
-
-    @Test
-    public void getAccountForUserByTypeTest(){
-        Set<Account> expectedAccount = new HashSet<>();
-        expectedAccount.add(new Account(1,100.0d, AccountType.CHECKING,1));
-        Mockito.when(mockAccountRepo.getAccountByUserIdAndType(1,AccountType.CHECKING))
-                .thenReturn(expectedAccount);
-        User newUser = new User(1,"troy","davis","td123","password","t@g.c", Role.ADMIN);
-
-        //act
-        sut.getAccountsForUserByType(newUser,AccountType.CHECKING);
-
-        Assert.assertEquals(expectedAccount,app.getUserAccounts());
-
-    }
 
 }

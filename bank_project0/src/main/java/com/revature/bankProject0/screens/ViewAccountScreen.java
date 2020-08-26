@@ -20,9 +20,8 @@ public class ViewAccountScreen extends Screen {
         LogService.log("Rendering " + app.getCurrentUser().getFirstName() + "'s Account...");
         String userSelection;
         accountService.getAccountsForUser(app.getCurrentUser());
-        String accountView = app.getUserAccounts().toString();
+        String accountView = app.getCurrentAccount().toString();
         System.out.println(accountView);
-
         System.out.println("1) Back to Dashboard");
         System.out.println("?) Sign Out");
 

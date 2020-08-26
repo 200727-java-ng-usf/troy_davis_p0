@@ -4,7 +4,6 @@ import com.revature.bankProject0.models.Account;
 import com.revature.bankProject0.models.Transaction;
 import com.revature.bankProject0.models.User;
 import com.revature.bankProject0.repositories.AccountRepository;
-import com.revature.bankProject0.repositories.TransactionRepository;
 import com.revature.bankProject0.repositories.UserRepository;
 import com.revature.bankProject0.screens.*;
 import com.revature.bankProject0.services.*;
@@ -12,7 +11,6 @@ import com.revature.bankProject0.services.*;
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
 import java.util.HashSet;
-import java.util.Optional;
 import java.util.Set;
 
 public class AppState {
@@ -50,9 +48,8 @@ public class AppState {
 
         final AccountService accountService = new AccountService(accountRepository);
 
-        final TransactionRepository transactionRepository = new TransactionRepository();
 
-        final TransactionService transactionService = new TransactionService(transactionRepository, accountRepository);
+        final TransactionService transactionService = new TransactionService( accountRepository);
         //add the screens to the router service
         routerService.addScreen(new HomeScreen())
                     .addScreen(new LoginScreen(userService))
@@ -66,13 +63,8 @@ public class AppState {
 
     }
 
-    public Account getCurrentAccount(Integer accountId) {
-         for(Account account : getUserAccounts()){
-             if (account.getId().equals(accountId)){
-                 return account;
-             }
-         }
-         return null;
+    public Account getCurrentAccount() {
+         return this.currentAccount;
     }
 
     public void setCurrentAccount(Account currentAccount) {

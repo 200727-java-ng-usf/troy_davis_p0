@@ -3,7 +3,6 @@ package com.revature.bankProject0.repositories;
 import com.revature.bankProject0.models.Account;
 import com.revature.bankProject0.models.AccountType;
 import com.revature.bankProject0.services.LogService;
-import com.revature.bankProject0.services.UserService;
 import com.revature.bankProject0.util.ConnectionFactory;
 
 import java.sql.Connection;
@@ -15,15 +14,13 @@ import java.util.Optional;
 import java.util.Set;
 import java.util.stream.Collectors;
 
-import static com.revature.bankProject0.AppDriver.app;
-
 /**
  * A repository to interact with the database and perform account services
  */
 public class AccountRepository {
     private String baseAccountPrimaryOwnerQuery = "SELECT * FROM project_zero.account a " +
                                                     "JOIN project_zero.bank_users bu " +
-                                                    "ON a.id = bu.id " +
+                                                    "ON a.account_primary_owner_id = bu.id " +
                                                     "JOIN project_zero.account_types act " +
                                                     "ON a.account_type_id = act.id ";
 
@@ -36,8 +33,8 @@ public class AccountRepository {
 
 
 
-    public Set<Account> findAccountByUserId(Integer userId){
-        Set<Account> account = new HashSet<>();
+    public Optional<Account> findAccountByUserId(Integer userId){
+        Optional<Account> account = Optional.empty();
 
         try(Connection conn = ConnectionFactory.getInstance().getConnection()){
            String sql = baseAccountPrimaryOwnerQuery + "WHERE bu.id = ?";
@@ -49,7 +46,7 @@ public class AccountRepository {
             Account account1 = new Account();
 
 
-            account = mapResultSet(rs);
+            account = mapResultSet(rs).stream().findFirst();
 
         }catch (SQLException e){
             LogService.logErr(e.toString());
@@ -87,15 +84,12 @@ public class AccountRepository {
 
         return optionalAccount;
     }
-
-    public void updateAccountBalance(Integer accountNumber, Integer primaryAccountOwner, Double endingBalance) {
+    public void updateAccountBalance(Integer accountNumber, Double endingBalance) {
         String sql = "UPDATE project_zero.account \n" +
-                     "SET account_balance=? \n" +
-                     "WHERE id=?";
+                "SET account_balance=? \n" +
+                "WHERE id=?";
 
         try(Connection conn = ConnectionFactory.getInstance().getConnection()) {
-
-
 
             PreparedStatement preparedStatement = conn.prepareStatement(sql, new String[] {"id"});
 
@@ -109,21 +103,6 @@ public class AccountRepository {
         }
     }
 
-    public Set<Account> getAccountByUserIdAndType(Integer userId, AccountType accountType){
-        Set<Account> accountSet = new HashSet<>();
-        try (Connection conn = ConnectionFactory.getInstance().getConnection()){
-            String sql = baseAccountPrimaryOwnerQuery + "WHERE bu.user_id = ? AND a.account_type_id =?";
-            PreparedStatement psmt = conn.prepareStatement(sql);
-            psmt.setInt(1,userId);
-            psmt.setInt(2,accountType.ordinal()+1);
-            ResultSet rs = psmt.executeQuery();
-            accountSet = mapResultSet(rs).stream().collect(Collectors.toSet());
-        } catch (SQLException e) {
-            LogService.logErr(e.toString());
-        }
-        return accountSet;
-    }
-
 
 
     private Set<Account> mapResultSet(ResultSet rs) throws SQLException{
@@ -134,7 +113,6 @@ public class AccountRepository {
             temp.setId(rs.getInt("id"));
             temp.setAccountBalance(((double) rs.getInt("account_balance")));
             temp.setPrimaryOwner(rs.getInt("account_primary_owner_id"));
-            //temp.setRole(Role.getByName(rs.getString("name")));
             temp.setAccountType(AccountType.getByName(rs.getString("name")));
             LogService.log("Retrieved Account: " + temp.toString());
             accounts.add(temp);
@@ -142,6 +120,5 @@ public class AccountRepository {
 
         return accounts;
     }
-
 
 }
