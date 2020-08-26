@@ -13,6 +13,7 @@ import java.util.InputMismatchException;
 
 import static com.revature.bankProject0.AppDriver.app;
 
+
 public class CreateTransactionScreen extends Screen{
     private TransactionService transactionService;
     private AccountService accountService;
@@ -34,11 +35,13 @@ public class CreateTransactionScreen extends Screen{
 
         try {
             System.out.println("What would you like to do?");
-            System.out.println("1) Create Deposit");
-            System.out.println("2) Create Withdrawal");
+            System.out.println(ConsoleColors.GREEN_BOLD_BRIGHT + "1) Create Deposit" + ConsoleColors.RESET);
+            System.out.println(ConsoleColors.RED_BOLD_BRIGHT + "2) Create Withdrawal" + ConsoleColors.RESET);
             System.out.println("Choose...");
+            //get the users input
             userSelection = app.getConsole().readLine();
 
+            //create new Transaction
             Transaction transaction = new Transaction();
             transaction.setPrimaryAccountOwner(app.getCurrentUser().getId());
             System.out.println("Here are your account details:");
@@ -48,9 +51,9 @@ public class CreateTransactionScreen extends Screen{
             System.out.println("Enter the account number that you would like to use: ");
             System.out.print("account number: ");
             transaction.setAccountNumber(Integer.valueOf(app.getConsole().readLine()));
-            transaction.setAccountBalance(app.getCurrentAccount(transaction.getAccountNumber()).getAccountBalance());
-
-
+            transaction.setAccountBalance(app.getCurrentAccount(transaction
+                                                .getAccountNumber())
+                                                .getAccountBalance());
             System.out.println("Enter the amount: ");
             System.out.print("$");
             transaction.setTransactionAmount(Double.valueOf(app.getConsole().readLine()));
@@ -58,13 +61,7 @@ public class CreateTransactionScreen extends Screen{
                 case "1":
                     transaction.setTransactionType(TransactionType.DEPOSIT);
                     transaction.setEndingBalance(transaction.getAccountBalance() + transaction.getTransactionAmount());
-
                     transactionService.createDepositTransaction(transaction);
-                    transactionService.getTransactionsForAccountAndUser(app.getCurrentUser(), app.getUserAccounts());
-                    String transactionsView = app.getAccountTransactions().toString();
-                    System.out.println("Success, here are your transactions: ");
-                    System.out.println(transactionsView);
-
                     app.getRouterService().route("/dash");
                     break;
                 case "2":
@@ -75,9 +72,6 @@ public class CreateTransactionScreen extends Screen{
                     transaction.setTransactionType(TransactionType.WITHDRAWAL);
                     transaction.setEndingBalance(transaction.getAccountBalance() - transaction.getTransactionAmount());
                     transactionService.createWithdrawalTransaction(transaction);
-
-                    System.out.println("Success! here are your transaction details: ");
-                    System.out.println(transaction);
                     app.getRouterService().route("/dash");
 
                     break;
@@ -86,12 +80,9 @@ public class CreateTransactionScreen extends Screen{
                     break;
             }
 
-
-
-
         } catch (IOException | InputMismatchException | NullPointerException e) {
             LogService.logErr(e.toString());
-            System.out.println("Something went wrong, please try again!");
+            System.out.println("Something went wrong trying to create that transaction, please try again!");
             app.getRouterService().route("/dash");
         }catch (Exception e){
             LogService.logErr(e.toString());

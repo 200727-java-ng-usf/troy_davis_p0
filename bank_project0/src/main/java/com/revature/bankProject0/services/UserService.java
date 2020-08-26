@@ -83,54 +83,6 @@ public class UserService {
         app.setCurrentUser(authUser);
     }
 
-    public Set<User> getAllUsers(){
-        return userRepository.getAllUsers();
-    }
-    public Set<User> getUsersByRole(Role role){
-        return userRepository.getUsersByRole(role);
-    }
-
-    public Optional<User> getUserById(int id){
-        return userRepository.findUserByUserId(id);
-    }
-
-
-    public Optional<User> getUsersByUsername(String username){
-        if (username == null){
-            return Optional.empty();
-        }
-        return userRepository.findUserByUserName(username);
-    }
-    public boolean deleteUserById(int id){
-        return userRepository.deleteUserById(id);
-    }
-
-
-
-
-    public void update (User updatedUser){
-        if (!isUserValid(updatedUser)){
-            LogService.log("Invalid user fields provided during registration");
-            throw new InvalidRequestException("Invalid user fields provided during registration");
-        }
-
-        Optional<User> existingUser = userRepository.findUserByUserName(updatedUser.getUserName());
-        if (existingUser.isPresent()){
-            System.out.println("Provided username is already in use!");
-            app.getRouterService().route("/register");
-        }
-
-        Optional<User> existingUserEmail = userRepository.findUserByEmail(updatedUser.getEmail());
-        if (existingUserEmail.isPresent()) {
-            // TODO implement a custom ResourcePersistenceException
-            throw new RuntimeException("Provided username is already in use!");
-        }
-
-        updatedUser.setRole(Role.BASIC_USER);
-        userRepository.update(updatedUser);
-        app.setCurrentUser(updatedUser);
-    }
-
 
     /**
      * public boolean method to tell if a given user is valid based on given fields

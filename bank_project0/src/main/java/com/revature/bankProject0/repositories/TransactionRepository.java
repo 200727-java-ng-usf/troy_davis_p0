@@ -23,8 +23,8 @@ public class TransactionRepository {
 
 
     private String baseInsert = "INSERT INTO project_zero.bank_transaction\n" +
-            "(account_balance, account_id, owner_id, transaction_type_id, transaction_amount, verified, executed, account_ending_balance)\n" +
-            "VALUES(?, ?, ?, ?, ?, false, false,?);";
+            "(account_balance, account_id, owner_id, transaction_type_id, transaction_amount, account_ending_balance)\n" +
+            "VALUES(?, ?, ?, ?, ?,?) ";
 
     public TransactionRepository(){
         LogService.log("Instantiating " + this.getClass().toString());
@@ -54,22 +54,12 @@ public class TransactionRepository {
                     transaction.setId(resultSet.getInt(1));
                 }
             }
-            String sql = "UPDATE project_zero.account\n" +
-                    "SET account_balance= ?\n" +
-                    "WHERE id= ? and account_primary_owner_id= ? and account_secondary_owner_id= ? ;";
-            PreparedStatement preparedStatement2 = conn.prepareStatement(sql, new String[]{"id"});
-            if (transaction.getTransactionType().equals(TransactionType.DEPOSIT)){
-
-            }else if(transaction.getTransactionType().equals(TransactionType.WITHDRAWAL)){
-
-            }
-            preparedStatement2.setDouble(1,transaction.getAccountBalance());
 
         } catch (SQLException e) {
             LogService.logErr(e.toString());
         }
 
-        return optionalTransaction;
+        return findTransactionsById(transaction.getId());
     }
 
 
@@ -78,7 +68,7 @@ public class TransactionRepository {
         Set<Transaction> accounts = new HashSet<>();
 
         try(Connection conn = ConnectionFactory.getInstance().getConnection()){
-            String sql = baseTransactionQuery + "WHERE bt.owner_id = ? AND bt.account_id = ? ORDER BY transaction_date ;";
+            String sql = baseTransactionQuery + "WHERE bt.owner_id = ? AND bt.account_id = ? ORDER BY transaction_date ";
             PreparedStatement psmt = conn.prepareStatement(sql);
             psmt.setInt(1,userId);
             psmt.setInt(2,accountId);
@@ -91,82 +81,21 @@ public class TransactionRepository {
         return accounts;
     }
 
-    public Set<Transaction> findTransactionsByAccountId(Integer accountId){
-        Set<Transaction> accounts = new HashSet<>();
+    public Optional<Transaction> findTransactionsById(Integer transactionId){
+        Optional<Transaction> optionalTransaction = Optional.empty();
 
         try(Connection conn = ConnectionFactory.getInstance().getConnection()){
-            String sql = baseTransactionQuery + "WHERE bt.account_id = ? ORDER BY transaction_date ;";
+            String sql = baseTransactionQuery + "WHERE bt.id= ? ";
             PreparedStatement psmt = conn.prepareStatement(sql);
-            psmt.setInt(1,accountId);
-            ResultSet rs = psmt.executeQuery();
-            accounts = mapResultSet(rs);
-        }catch (SQLException e){
-            LogService.logErr(e.toString());
-        }
-
-        return accounts;
-    }
-
-    public Set<Transaction> findTransactionsByAccountAndAccountType(Integer accountId, AccountType accountType){
-        Set<Transaction> accounts = new HashSet<>();
-
-        try(Connection conn = ConnectionFactory.getInstance().getConnection()){
-            String sql = baseTransactionQuery + "WHERE bt.account_id = ? " +
-                    "AND a.account_type_id = ? " +
-                    "ORDER BY transaction_date ;";
-            PreparedStatement psmt = conn.prepareStatement(sql);
-            psmt.setInt(1,accountId);
-            psmt.setInt(2,accountType.ordinal()+1);
-            ResultSet rs = psmt.executeQuery();
-            Account account1 = new Account();
-            accounts = mapResultSet(rs);
-        }catch (SQLException e){
-            LogService.logErr(e.toString());
-        }
-
-        return accounts;
-    }
-
-    public Set<Transaction> findTransactionsByUserAndAccountAndAccountType(Integer userId, Integer accountId, AccountType accountType){
-        Set<Transaction> accounts = new HashSet<>();
-
-        try(Connection conn = ConnectionFactory.getInstance().getConnection()){
-            String sql = baseTransactionQuery + "WHERE bt.owner_id = ? " +
-                                                "AND bt.account_id = ? " +
-                                                "AND a.account_type_id = ? " +
-                                                "ORDER BY transaction_date ;";
-            PreparedStatement psmt = conn.prepareStatement(sql);
-            psmt.setInt(1,userId);
-            psmt.setInt(2,accountId);
-            psmt.setInt(3,accountType.ordinal()+1);
-            ResultSet rs = psmt.executeQuery();
-            Account account1 = new Account();
-            accounts = mapResultSet(rs);
-        }catch (SQLException e){
-            LogService.logErr(e.toString());
-        }
-
-        return accounts;
-    }
-
-    public boolean deleteTransactionById(Integer transactionId){
-        try (Connection conn = ConnectionFactory.getInstance().getConnection()){
-            String sql = "DELETE FROM project_zero.bank_transaction\n" +
-                         "WHERE id=?;\n";
-            PreparedStatement psmt = conn.prepareStatement(sql,new String[] {"id"});
             psmt.setInt(1,transactionId);
-            //get number of affected rows
-            int rowsInserted = psmt.executeUpdate();
-            if (rowsInserted !=0){
-                return true;
-            }
-        } catch (SQLException e) {
+            ResultSet rs = psmt.executeQuery();
+            optionalTransaction = mapResultSet(rs).stream().findFirst();
+        }catch (SQLException e){
             LogService.logErr(e.toString());
         }
 
-        return false;
+        return optionalTransaction;
     }
-
 
     private Set<Transaction> mapResultSet(ResultSet rs) throws SQLException{
         Set<Transaction> transactions = new HashSet<>();

@@ -5,7 +5,7 @@ import java.util.Objects;
 
 public class Transaction {
     private Integer id;
-    private String date;
+
     private Date dateStamp;
     private Integer primaryAccountOwner;
     private Integer accountNumber;
@@ -54,14 +54,6 @@ public class Transaction {
 
     public void setId(Integer id) {
         this.id = id;
-    }
-
-    public String getDate() {
-        return date;
-    }
-
-    public void setDate(String date) {
-        this.date = date;
     }
 
     public Date getDateStamp() {
@@ -118,7 +110,6 @@ public class Transaction {
         if (!(o instanceof Transaction)) return false;
         Transaction that = (Transaction) o;
         return Objects.equals(getId(), that.getId()) &&
-                Objects.equals(getDate(), that.getDate()) &&
                 Objects.equals(getDateStamp(), that.getDateStamp()) &&
                 Objects.equals(getPrimaryAccountOwner(), that.getPrimaryAccountOwner()) &&
                 Objects.equals(getAccountNumber(), that.getAccountNumber()) &&
@@ -130,7 +121,7 @@ public class Transaction {
 
     @Override
     public int hashCode() {
-        return Objects.hash(getId(), getDate(), getDateStamp(), getPrimaryAccountOwner(), getAccountNumber(), getAccountBalance(), getEndingBalance(), getTransactionAmount(), getTransactionType());
+        return Objects.hash(getId(), getDateStamp(), getPrimaryAccountOwner(), getAccountNumber(), getAccountBalance(), getEndingBalance(), getTransactionAmount(), getTransactionType());
     }
 
     @Override

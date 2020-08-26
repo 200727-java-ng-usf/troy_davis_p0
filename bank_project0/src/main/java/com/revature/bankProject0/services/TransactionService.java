@@ -2,11 +2,13 @@ package com.revature.bankProject0.services;
 
 import com.revature.bankProject0.exceptions.InvalidRequestException;
 import com.revature.bankProject0.models.Account;
+import com.revature.bankProject0.models.AccountType;
 import com.revature.bankProject0.models.Transaction;
 import com.revature.bankProject0.models.User;
 import com.revature.bankProject0.repositories.AccountRepository;
 import com.revature.bankProject0.repositories.TransactionRepository;
 
+import java.util.Optional;
 import java.util.Set;
 
 import static com.revature.bankProject0.AppDriver.app;
@@ -25,29 +27,26 @@ public class TransactionService {
             LogService.log("Invalid transaction Details provided!");
             throw new InvalidRequestException("Invalid user fields provided during Deposit Transaction creation");
         }
-        transactionRepository.createNewTransaction(transaction);
+        Optional<Transaction> optionalTransaction = transactionRepository.createNewTransaction(transaction);
         accountRepository.updateAccountBalance(transaction.getAccountNumber(),
                                                transaction.getPrimaryAccountOwner(),
                                                transaction.getEndingBalance());
+        System.out.println("Success! Here are your Transaction details!");
+        System.out.println(optionalTransaction);
     }
     public void createWithdrawalTransaction(Transaction transaction){
         if (!isTransactionValid(transaction)){
             LogService.log("Invalid transaction Details provided!");
             throw new InvalidRequestException("Invalid user fields provided during Deposit Transaction creation");
         }
-        transactionRepository.createNewTransaction(transaction);
+        Optional<Transaction> optionalTransaction = transactionRepository.createNewTransaction(transaction);
         accountRepository.updateAccountBalance(transaction.getAccountNumber(),
                 transaction.getPrimaryAccountOwner(),
                 transaction.getEndingBalance());
+        System.out.println("Success! Here are your Transaction details!");
+        System.out.println(optionalTransaction);
     }
 
-    public void getTransactionsForAccountAndUser(User user, Set<Account> account){
-        if (user != null && account != null) {
-            for (Account account1: account){
-                app.addToAccountTransactions(transactionRepository.findTransactionsByUserAndAccount(user.getId(), account1.getId()));
-            }
-        }
-    }
 
     public boolean isTransactionValid(Transaction transaction){
         if (transaction == null){
@@ -58,8 +57,6 @@ public class TransactionService {
             transaction.getPrimaryAccountOwner() == null || transaction.getTransactionType() == null){
             return false;
         }
-
-
         return true;
     }
 

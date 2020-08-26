@@ -1,5 +1,7 @@
 package com.revature.bankProject0Tests.services;
 
+import com.revature.bankProject0.exceptions.AuthenticationException;
+import com.revature.bankProject0.exceptions.InvalidRequestException;
 import com.revature.bankProject0.models.Role;
 import com.revature.bankProject0.models.User;
 import com.revature.bankProject0.repositories.UserRepository;
@@ -28,6 +30,7 @@ public class UserServiceTests {
     public void setup(){
         sut = new UserService(mockUserRepo);
         mockUsers.add( new User(1,"troy","davis","tmd1990","password", "test@g.co",Role.ADMIN));
+        mockUsers.add( new User(1,"kaila","davis","kay1990","password", "kay@g.co",Role.BASIC_USER));
     }
 
     @After
@@ -39,9 +42,20 @@ public class UserServiceTests {
         msg = null;
     }
 
-    @Test
-    public void authenticateWithValidCredentials() {
-
+    @Test(expected = AuthenticationException.class)
+    public void authenticateWithInvalidCredentials() {
+        sut.authenticate("garbage", "user");
     }
 
+    @Test
+    public void isUserValidTestwithBadCredentials(){
+        User newUser = new User();
+        Assert.assertFalse(sut.isUserValid(newUser));
+    }
+
+    @Test(expected = InvalidRequestException.class)
+    public void testReisterWithBadCredentials(){
+        User newUser = new User();
+        sut.register(newUser);
+    }
 }

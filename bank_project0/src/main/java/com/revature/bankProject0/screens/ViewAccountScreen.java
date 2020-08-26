@@ -1,5 +1,6 @@
 package com.revature.bankProject0.screens;
 
+import com.revature.bankProject0.models.AccountType;
 import com.revature.bankProject0.services.AccountService;
 import com.revature.bankProject0.services.LogService;
 
@@ -21,7 +22,7 @@ public class ViewAccountScreen extends Screen {
         accountService.getAccountsForUser(app.getCurrentUser());
         String accountView = app.getUserAccounts().toString();
         System.out.println(accountView);
-        //TODO: Get user account balance
+
         System.out.println("1) Back to Dashboard");
         System.out.println("?) Sign Out");
 

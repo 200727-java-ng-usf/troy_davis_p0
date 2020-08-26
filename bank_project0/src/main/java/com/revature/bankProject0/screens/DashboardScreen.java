@@ -27,9 +27,8 @@ public class DashboardScreen extends Screen{
         //While loop to end if the user logs out
         while (app.isSessionValid()){
             System.out.println("1) View Accounts");
-            System.out.println("2) View Past Transactions");
-            System.out.println("3) Create New Transaction");
-            System.out.println("4) Create New Bank Account");
+            System.out.println("2) Create New Transaction");
+            System.out.println("3) Create New Bank Account");
             System.out.println("?) Sign Out");
 
             try {
@@ -42,12 +41,9 @@ public class DashboardScreen extends Screen{
                         app.getRouterService().route("/viewAccount");
                         break;
                     case "2":
-                        app.getRouterService().route("/viewTransactions");
-                        break;
-                    case "3":
                         app.getRouterService().route("/createTransaction");
                         break;
-                    case "4":
+                    case "3":
                         app.getRouterService().route("/createAccount");
                         break;
                     default:

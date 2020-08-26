@@ -71,23 +71,6 @@ public class UserRepository {
         return user;
     }
 
-    public Optional<User> findUserByUserId(Integer userId){
-        Optional<User> user = Optional.empty();
-        try (Connection conn = ConnectionFactory.getInstance().getConnection()){
-
-            String sql = baseQuery + "WHERE id = ?";
-            PreparedStatement psmt = conn.prepareStatement(sql);
-            psmt.setInt(1, userId);
-            ResultSet rs = psmt.executeQuery();
-
-            user = mapResultSet(rs).stream().findFirst();
-
-        } catch (SQLException e) {
-            LogService.logErr(e.toString());
-        }
-        return user;
-    }
-
     public Optional<User> findUserByEmail(String email) {
 
         Optional<User> _user = Optional.empty();
@@ -107,55 +90,6 @@ public class UserRepository {
 
         return _user;
 
-    }
-    /**
-     * Method to get all users from the database
-     * @return
-     */
-    public Set<User> getAllUsers(){
-        Set<User> usersList = new HashSet<>();
-
-        try (Connection conn = ConnectionFactory.getInstance().getConnection()){
-
-            String sql = baseQuery;
-            PreparedStatement pstmt = conn.prepareStatement(sql);
-            ResultSet rs = pstmt.executeQuery();
-            usersList = mapResultSet(rs).stream().collect(Collectors.toSet());
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-        return usersList;
-    }
-
-    public boolean deleteUserById(Integer userId){
-        try (Connection conn = ConnectionFactory.getInstance().getConnection()){
-            String sql = "DELETE FROM project_zero.bank_users\n" +
-                         "WHERE id=?;\n";
-            PreparedStatement psmt = conn.prepareStatement(sql,new String[] {"id"});
-            psmt.setInt(1,userId);
-            //get number of affected rows
-            int rowsInserted = psmt.executeUpdate();
-            if (rowsInserted !=0){
-                return true;
-            }
-        } catch (SQLException e) {
-            LogService.logErr(e.toString());
-        }
-        return false;
-    }
-
-    public Set<User> getUsersByRole(Role role){
-        Set<User> usersList = new HashSet<>();
-        try (Connection conn = ConnectionFactory.getInstance().getConnection()){
-            String sql = baseQuery + "WHERE role_id=?;";
-            PreparedStatement psmt = conn.prepareStatement(sql);
-            psmt.setInt(1,role.ordinal()+1);
-            ResultSet rs = psmt.executeQuery();
-            usersList = mapResultSet(rs).stream().collect(Collectors.toSet());
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-        return usersList;
     }
 
     public Optional<User> save(User newUser){
@@ -189,38 +123,7 @@ public class UserRepository {
         return Optional.of(newUser);
     }
 
-    public Optional<User> update(User newUser){
-        Optional<User> updatedUser = Optional.empty();
-        try (Connection conn = ConnectionFactory.getInstance().getConnection()){
 
-            String sql = "UPDATE project_zero.bank_users\n" +
-                    "SET username=? , password = ?, first_name=?, last_name=?, email=?, role_id=?\n" +
-                    "WHERE id=?;\n "
-                    ;
-            PreparedStatement psmt = conn.prepareStatement(sql,new String[] {"id"});
-            psmt.setString(1,newUser.getUserName());
-            psmt.setString(2,newUser.getPassWord());
-            psmt.setString(3,newUser.getFirstName());
-            psmt.setString(4,newUser.getLastName());
-            psmt.setString(5,newUser.getEmail());
-            psmt.setInt(6,newUser.getRole().ordinal() + 1);
-            psmt.setInt(7,newUser.getId());
-
-            //get number of affected rows
-            int rowsInserted = psmt.executeUpdate();
-            if (rowsInserted !=0){
-                ResultSet rs = psmt.getGeneratedKeys();
-                while (rs.next()){
-                    //get the generated primary key, the user id number
-                    newUser.setId(rs.getInt(1));
-                }
-            }
-
-        } catch (SQLException e) {
-            LogService.logErr(e.toString());
-        }
-        return Optional.of(newUser);
-    }
 
     private Set<User> mapResultSet(ResultSet rs) throws SQLException {
 
