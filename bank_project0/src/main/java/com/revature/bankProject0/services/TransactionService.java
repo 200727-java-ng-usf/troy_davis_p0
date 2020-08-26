@@ -21,7 +21,7 @@ public class TransactionService {
     public void createDepositTransaction(Transaction transaction){
         if (!isTransactionValid(transaction)){
             LogService.log("Invalid transaction Details provided!");
-            throw new InvalidRequestException("Invalid user fields provided during Deposit Transaction creation");
+            return;
         }
         accountRepository.updateAccountBalance(transaction.getAccountNumber(), transaction.getEndingBalance());
     }
@@ -32,7 +32,7 @@ public class TransactionService {
     public void createWithdrawalTransaction(Transaction transaction){
         if (!isTransactionValid(transaction)){
             LogService.log("Invalid transaction Details provided!");
-            throw new InvalidRequestException("Invalid user fields provided during Deposit Transaction creation");
+            return;
         }
         accountRepository.updateAccountBalance(transaction.getAccountNumber(),transaction.getEndingBalance());
     }

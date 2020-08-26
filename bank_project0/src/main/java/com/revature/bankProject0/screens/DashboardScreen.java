@@ -21,11 +21,11 @@ public class DashboardScreen extends Screen{
     @Override
     public void render() {
         String userSelection;
-        LogService.log("Rendering " + app.getCurrentUser().getFirstName() + "'s Dashboard...");
-        System.out.println("Rendering " + app.getCurrentUser().getFirstName() + "'s Dashboard...");
+
 
         //While loop to end if the user logs out
         while (app.isSessionValid()){
+            System.out.println("Rendering " + app.getCurrentUser().getFirstName() + "'s Dashboard...");
             System.out.println("1) View Account");
             System.out.println("2) Create New Transaction");
             System.out.println("3) Create New Bank Account");
