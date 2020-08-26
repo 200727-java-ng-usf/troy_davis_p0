@@ -18,8 +18,6 @@ public class AppState {
     private User currentUser;
     private RouterService routerService;
     private boolean appRunning;
-    private Set<Account> userAccounts;
-    private Set<Transaction> accountTransactions;
     private Account currentAccount;
 
     public AppState(){
@@ -37,10 +35,6 @@ public class AppState {
         final UserService userService = new UserService(userRepository);
         //create instance of new router service
         routerService = new RouterService();
-
-        this.userAccounts = new HashSet<>();
-
-        this.accountTransactions = new HashSet<>();
 
         this.currentAccount = new Account();
 
@@ -110,26 +104,4 @@ public class AppState {
         currentUser = null;
     }
 
-    public Set<Account> getUserAccounts() {
-
-        return userAccounts;
-    }
-
-    public void setUserAccounts(Set<Account> userAccounts) {
-        this.userAccounts = userAccounts;
-    }
-    public void addToUserAccounts(Account userAccount){
-        this.userAccounts.add(userAccount);
-    }
-
-    public Set<Transaction> getAccountTransactions() {
-        return accountTransactions;
-    }
-
-    public void setAccountTransactions(Set<Transaction> accountTransactions) {
-        this.accountTransactions = accountTransactions;
-    }
-    public void addToAccountTransactions(Set<Transaction> accountTransactions){
-        this.accountTransactions.addAll(accountTransactions);
-    }
 }

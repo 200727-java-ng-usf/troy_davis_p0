@@ -45,6 +45,7 @@ public class CreateTransactionScreen extends Screen{
             Transaction transaction = new Transaction();
             transaction.setPrimaryAccountOwner(app.getCurrentUser().getId());
             System.out.println("Here are your account details:");
+            //get account for user from app. current account
             accountService.getAccountsForUser(app.getCurrentUser());
             System.out.println(app.getCurrentAccount());
             transaction.setAccountNumber(app.getCurrentAccount().getId());
@@ -56,6 +57,7 @@ public class CreateTransactionScreen extends Screen{
                 case "1":
                     transaction.setTransactionType(TransactionType.DEPOSIT);
                     transaction.setEndingBalance(transaction.getAccountBalance() + transaction.getTransactionAmount());
+                    //create transaction by updating account balance in account repo
                     transactionService.createDepositTransaction(transaction);
                     app.getRouterService().route("/dash");
                     break;
@@ -66,6 +68,7 @@ public class CreateTransactionScreen extends Screen{
                     }
                     transaction.setTransactionType(TransactionType.WITHDRAWAL);
                     transaction.setEndingBalance(transaction.getAccountBalance() - transaction.getTransactionAmount());
+                    //create transaction by updating account balance in account repo
                     transactionService.createWithdrawalTransaction(transaction);
                     app.getRouterService().route("/dash");
 

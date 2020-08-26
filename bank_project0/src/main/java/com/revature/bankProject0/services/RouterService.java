@@ -20,6 +20,10 @@ public class RouterService {
         return this;
     }
 
+    /**
+     * Route to a requested screen
+     * @param route
+     */
     public void route( String route){
         screens.stream()
                 .filter(screen -> screen.getRoute().equals(route))

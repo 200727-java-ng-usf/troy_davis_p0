@@ -19,6 +19,7 @@ public class ViewAccountScreen extends Screen {
     public void render() {
         LogService.log("Rendering " + app.getCurrentUser().getFirstName() + "'s Account...");
         String userSelection;
+        //set app. current account to the users account and display it
         accountService.getAccountsForUser(app.getCurrentUser());
         String accountView = app.getCurrentAccount().toString();
         System.out.println(accountView);

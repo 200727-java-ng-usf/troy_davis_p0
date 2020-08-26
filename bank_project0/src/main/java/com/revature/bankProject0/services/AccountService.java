@@ -19,7 +19,10 @@ public class AccountService {
         accountRepository = repo;
     }
 
-
+    /**
+     * Registers new account and adds them to app. current account
+     * @param newAccount
+     */
     public void register(Account newAccount){
         if (!isAccountValid(newAccount)){
             LogService.log("Invalid Account Details Provided");
@@ -34,6 +37,10 @@ public class AccountService {
         app.setCurrentAccount(newAccount);
     }
 
+    /**
+     * Get accounts for user and sets it to app. current user
+     * @param user
+     */
     public void getAccountsForUser(User user){
         if (user != null) {
             app.setCurrentAccount(accountRepository.findAccountByUserId(user.getId())
@@ -41,6 +48,11 @@ public class AccountService {
         }
     }
 
+    /**
+     * Basic account validation
+     * @param accountInQuestion
+     * @return
+     */
     public boolean isAccountValid(Account accountInQuestion){
         if (accountInQuestion == null){
             return false;

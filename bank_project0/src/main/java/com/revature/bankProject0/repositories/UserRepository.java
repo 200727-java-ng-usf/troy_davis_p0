@@ -29,9 +29,7 @@ public class UserRepository {
 
 
     public Optional<User> findUsersByCredentials(String userName, String password){
-
         Optional<User> user = Optional.empty();
-
         try (Connection conn = ConnectionFactory.getInstance().getConnection()){
 
             String sql = baseQuery + "WHERE username = ? AND password = ?";
@@ -40,8 +38,6 @@ public class UserRepository {
             psmt.setString(2,password);
 
             ResultSet rs = psmt.executeQuery();
-
-            User appUser = new User();
 
             user = mapResultSet(rs).stream().findFirst();
 
@@ -66,8 +62,6 @@ public class UserRepository {
         } catch (SQLException e) {
             LogService.logErr(e.toString());
         }
-
-
         return user;
     }
 
@@ -80,7 +74,6 @@ public class UserRepository {
             String sql = baseQuery + "WHERE email = ?";
             PreparedStatement pstmt = conn.prepareStatement(sql);
             pstmt.setString(1, email);
-
             ResultSet rs = pstmt.executeQuery();
             _user = mapResultSet(rs).stream().findFirst();
 
@@ -122,8 +115,6 @@ public class UserRepository {
         }
         return Optional.of(newUser);
     }
-
-
 
     private Set<User> mapResultSet(ResultSet rs) throws SQLException {
 

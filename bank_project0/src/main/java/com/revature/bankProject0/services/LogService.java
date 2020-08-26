@@ -12,17 +12,13 @@ public class LogService {
     private static File  logFile =new File("src/main/resources/log.txt");
 
     public LogService(){
-        if (logFile.exists()){
-            try (BufferedWriter writer = new BufferedWriter(new FileWriter(logFile))){
-                Date date = new Date();
-                writer.write("\n"+ "[LOG] - " + date.toString() + " - " + "Initializing Log Filer");
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
-        }
+        super();
     }
 
-    //log in file
+    /**
+     * Create New Log
+     * @param aStringToLog
+     */
     public static void log(String aStringToLog){
         //using try with resources block
         try (BufferedWriter writer = new BufferedWriter(new FileWriter(logFile, true))){
@@ -32,6 +28,11 @@ public class LogService {
             e.printStackTrace();
         }
     }
+
+    /**
+     * Log an Error with a highlighted designation
+     * @param anErrToLog
+     */
     public static void logErr(String anErrToLog){
         //using try with resources block
         try (BufferedWriter writer = new BufferedWriter(new FileWriter(logFile, true))){

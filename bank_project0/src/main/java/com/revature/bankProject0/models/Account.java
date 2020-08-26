@@ -96,11 +96,9 @@ public class Account {
     public String toString() {
         NumberFormat formatter = NumberFormat.getCurrencyInstance();
         return "\n"+"Account: " + "\n"+
-                ", " + "accountBalance: " +
+                "accountBalance: " +
                 formatter.format(accountBalance.doubleValue()) +
-                ", accountType: " + accountType
-                //", primaryOwner=" + primaryOwner +
-                //", secondaryOwner=" + secondaryOwner +
+                " accountType: " + accountType
                 ;
     }
 }

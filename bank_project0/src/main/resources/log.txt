@@ -27,3 +27,34 @@
 [LOG] - Wed Aug 26 10:12:50 EDT 2020 - Invalid user fields provided during registration
 [LOG] - Wed Aug 26 10:12:50 EDT 2020 - Invalid user fields provided during registration
 [LOG] - Wed Aug 26 10:12:50 EDT 2020 - Instantiating class com.revature.bankProject0.services.UserService
+[LOG] - Wed Aug 26 10:28:55 EDT 2020 - Instantiating class com.revature.bankProject0.services.AccountService
+[LOG] - Wed Aug 26 10:28:55 EDT 2020 - Invalid Account Details Provided
+[LOG] - Wed Aug 26 10:28:55 EDT 2020 - Invalid user fields provided during account creation
+[LOG] - Wed Aug 26 10:28:55 EDT 2020 - Instantiating class com.revature.bankProject0.services.AccountService
+[LOG] - Wed Aug 26 10:28:55 EDT 2020 - Initializing Application
+[LOG] - Wed Aug 26 10:28:55 EDT 2020 - Instantiating class com.revature.bankProject0.repositories.UserRepository
+[LOG] - Wed Aug 26 10:28:55 EDT 2020 - Instantiating class com.revature.bankProject0.services.UserService
+[LOG] - Wed Aug 26 10:28:55 EDT 2020 - Instantiating class com.revature.bankProject0.repositories.AccountRepository
+[LOG] - Wed Aug 26 10:28:55 EDT 2020 - Instantiating class com.revature.bankProject0.services.AccountService
+[LOG] - Wed Aug 26 10:28:55 EDT 2020 - Instantiating class com.revature.bankProject0.services.TransactionService
+[LOG] - Wed Aug 26 10:28:55 EDT 2020 - Adding /homeTo screen set
+[LOG] - Wed Aug 26 10:28:55 EDT 2020 - Instantiating: com.revature.bankProject0.screens.LoginScreen
+[LOG] - Wed Aug 26 10:28:55 EDT 2020 - Adding /loginTo screen set
+[LOG] - Wed Aug 26 10:28:55 EDT 2020 - Instantiating com.revature.bankProject0.screens.RegisterScreen
+[LOG] - Wed Aug 26 10:28:55 EDT 2020 - Adding /registerTo screen set
+[LOG] - Wed Aug 26 10:28:55 EDT 2020 - Adding /dashTo screen set
+[LOG] - Wed Aug 26 10:28:55 EDT 2020 - Adding /viewAccountTo screen set
+[LOG] - Wed Aug 26 10:28:55 EDT 2020 - Adding /createTransactionTo screen set
+[LOG] - Wed Aug 26 10:28:55 EDT 2020 - Adding /createAccountTo screen set
+[LOG] - Wed Aug 26 10:28:55 EDT 2020 - Application initialization complete
+[LOG] - Wed Aug 26 10:28:55 EDT 2020 - Instantiating class com.revature.bankProject0.services.TransactionService
+[LOG] - Wed Aug 26 10:28:55 EDT 2020 - Invalid transaction Details provided!
+[LOG] - Wed Aug 26 10:28:55 EDT 2020 - Invalid user fields provided during Deposit Transaction creation
+[LOG] - Wed Aug 26 10:28:55 EDT 2020 - Instantiating class com.revature.bankProject0.services.TransactionService
+[LOG] - Wed Aug 26 10:28:55 EDT 2020 - Invalid transaction Details provided!
+[LOG] - Wed Aug 26 10:28:55 EDT 2020 - Invalid user fields provided during Deposit Transaction creation
+[LOG] - Wed Aug 26 10:28:55 EDT 2020 - Instantiating class com.revature.bankProject0.services.UserService
+[LOG] - Wed Aug 26 10:28:55 EDT 2020 - Instantiating class com.revature.bankProject0.services.UserService
+[LOG] - Wed Aug 26 10:28:55 EDT 2020 - Invalid user fields provided during registration
+[LOG] - Wed Aug 26 10:28:55 EDT 2020 - Invalid user fields provided during registration
+[LOG] - Wed Aug 26 10:28:55 EDT 2020 - Instantiating class com.revature.bankProject0.services.UserService

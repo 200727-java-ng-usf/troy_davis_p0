@@ -127,11 +127,11 @@ public class Transaction {
     @Override
     public String toString() {
         return "\n"+"Transaction: " +
-                "id=" + id +
-                ", dateStamp=" + dateStamp +
-                ", accountNumber=" + accountNumber +
-                ", transactionAmount=" + transactionAmount +
-                ", transactionType=" + transactionType + "\n";
+                " id: " + id +
+                " dateStamp: " + dateStamp +
+                " accountNumber: " + accountNumber +
+                " transactionAmount: " + transactionAmount +
+                " transactionType: " + transactionType + "\n";
     }
 }
 
